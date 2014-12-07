@@ -1,11 +1,8 @@
 package com.colm.daysuntil;
 
-import org.joda.time.DateTime;
 import org.joda.time.Days;
-import org.joda.time.Period;
-
+import org.joda.time.LocalDate;
 import com.example.daysuntil.R;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
@@ -35,7 +32,6 @@ public class MainScreen extends Activity implements AdapterView.OnItemClickListe
         header = (TextView) findViewById(R.id.header_text); 
         
         listContent = (ListView)findViewById(R.id.list);
-        header = (TextView) findViewById(R.id.header_text); 
         
         // setup the data from the database
         setupData();
@@ -64,21 +60,15 @@ public class MainScreen extends Activity implements AdapterView.OnItemClickListe
     }
     
     // calculate the days between the two dates. This uses the Jodatime library
-    public Days daysUntil(DateTime eventDate)
+    public String daysUntil(LocalDate eventDate)
     {
-    	DateTime start = new DateTime(2004, 12, 25, 0, 0, 0, 0);
-    	DateTime end = new DateTime(2006, 1, 1, 0, 0, 0, 0);
-
-    	// period of 1 year and 7 days
-    	Period period = new Period(start, end);
-
-    	// calc will equal end
-    	DateTime calc = start.plus(period);
-
-    	// able to calculate whole days between two dates easily
-    	Days days_between = Days.daysBetween(start, end);
-    	
-    	return days_between;
+    	LocalDate todaysDate = new LocalDate();
+        LocalDate endDate = new LocalDate(2014, 12, 25);
+        
+        String daysBetween = Days.daysBetween(todaysDate, endDate).toString();
+        daysBetween = daysBetween.substring(1, daysBetween.length()-1);
+    	 
+    	return daysBetween;
     }
     
     //action bar
