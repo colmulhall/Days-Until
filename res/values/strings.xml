@@ -1,5 +1,9 @@
 <resources>
 
     <string name="app_name">Days Until</string>
+    
+    <!-- Mainscreen strings -->
+    <string name="new_event">New</string>
+    <string name="about">About</string>
 
 </resources>

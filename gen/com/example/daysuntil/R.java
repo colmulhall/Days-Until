@@ -8,23 +8,37 @@
 package com.example.daysuntil;
 
 public final class R {
+    public static final class anim {
+        public static final int slide_in=0x7f040000;
+        public static final int slide_out=0x7f040001;
+    }
     public static final class attr {
     }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
+        public static final int ic_action_about=0x7f020000;
+        public static final int ic_action_new=0x7f020001;
+        public static final int ic_launcher=0x7f020002;
     }
     public static final class id {
-        public static final int eventtext=0x7f060002;
-        public static final int header_text=0x7f060000;
-        public static final int list=0x7f060001;
+        public static final int about_action=0x7f080003;
+        public static final int add_action=0x7f080002;
+        public static final int eventtext=0x7f080001;
+        public static final int list=0x7f080000;
     }
     public static final class layout {
         public static final int displayevent=0x7f030000;
         public static final int mainscreen=0x7f030001;
         public static final int row=0x7f030002;
     }
+    public static final class menu {
+        public static final int mainscreen_menu=0x7f070000;
+    }
     public static final class string {
-        public static final int app_name=0x7f040000;
+        public static final int about=0x7f050002;
+        public static final int app_name=0x7f050000;
+        /**  Mainscreen strings 
+         */
+        public static final int new_event=0x7f050001;
     }
     public static final class style {
         /** 
@@ -48,10 +62,10 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f050000;
+        public static final int AppBaseTheme=0x7f060000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f050001;
+        public static final int AppTheme=0x7f060001;
     }
 }
