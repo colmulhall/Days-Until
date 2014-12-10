@@ -2,6 +2,7 @@ package com.colm.daysuntil;
 
 import com.example.daysuntil.R;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
@@ -27,6 +28,9 @@ public class MainScreen extends Activity implements AdapterView.OnItemClickListe
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mainscreen);
+        
+        getActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM); 
+        getActionBar().setCustomView(R.layout.abs_layout);
         
         listContent = (ListView)findViewById(R.id.list);
         
@@ -56,7 +60,7 @@ public class MainScreen extends Activity implements AdapterView.OnItemClickListe
         listContent.setOnItemClickListener(this);
     }
     
-    //action bar
+    // action bar
     @Override
 	public boolean onCreateOptionsMenu(Menu menu) 
 	{
@@ -73,7 +77,7 @@ public class MainScreen extends Activity implements AdapterView.OnItemClickListe
     	Intent intent = new Intent(MainScreen.this, DisplayEvent.class);
     	intent.putExtra(ID_EXTRA, String.valueOf(id));  //pass the id of the selected item with the intent
     	startActivity(intent);
-    	overridePendingTransition(R.anim.slide_in, R.anim.slide_out);  //animation
+    	overridePendingTransition(R.anim.slide_in_right_to_left, R.anim.slide_out_right_to_left);  //animation
 	}
     
     // action bar listener
@@ -83,10 +87,10 @@ public class MainScreen extends Activity implements AdapterView.OnItemClickListe
     	switch (item.getItemId()) 
         {
 	      case R.id.add_action:
-				/*Intent intent = new Intent(MainScreen.this, AddEvent.class);
+				Intent intent = new Intent(MainScreen.this, AddEvent.class);
 				startActivity(intent);
-				overridePendingTransition(R.anim.slide_in, R.anim.slide_out);  //animation
-				break;*/
+				overridePendingTransition(R.anim.slide_in_right_to_left, R.anim.slide_out_right_to_left);  //animation
+				break;
 				
 	      case R.id.about_action:
 	

@@ -1,135 +1,73 @@
-/*package com.colm.daysuntil;
+package com.colm.daysuntil;
 
-import java.util.ArrayList;
-import java.util.Calendar;
+import com.example.daysuntil.R;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.widget.AutoCompleteTextView;
-import android.widget.Button;
+import android.support.v4.app.NavUtils;
+import android.view.MenuItem;
+import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 public class AddEvent extends Activity
 {
 	private DBManager db;
-	private TextView enterCountry, selectYear, selectMonth, selectTransport, enterDescription;
-	private EditText editDesc;
-	private Spinner spinYear, spinMonth, spinTransport;
-	private Button add, back;
-	private AutoCompleteTextView editCountry;
+	private TextView eventTitle, eventDate;
+	private EditText enterTitle;
+	private DatePicker enterDate;
 	
     // Called when the activity is first created.
     @Override
     public void onCreate(Bundle savedInstanceState) 
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.addcountry_layout);
+        setContentView(R.layout.addevent);
         
-        //Enter country
-        enterCountry = (TextView)findViewById(R.id.enter_country);
-        editCountry = (AutoCompleteTextView)findViewById(R.id.editcountry);  //autocomplete countries
-        editCountry.setThreshold(1);
+        getActionBar().setDisplayHomeAsUpEnabled(true); // for up navigation
         
-        //Enter year
-        selectYear = (TextView)findViewById(R.id.enter_year);
-        spinYear = (Spinner)findViewById(R.id.yearspin);
-        
-        //list of years for the spinner. gets current year and goes back to 1960
-        ArrayList<String> years = new ArrayList<String>();
-        int thisYear = Calendar.getInstance().get(Calendar.YEAR);
-        for (int i = thisYear; i >= 1960; i--) 
-        {
-            years.add("" + i);
-        }
-        
-        //Enter month
-        selectMonth = (TextView)findViewById(R.id.enter_month);
-        selectMonth.setTypeface(font);
-        spinMonth = (Spinner)findViewById(R.id.monthspin);
-        spinMonth.setBackgroundColor(inputBgColour);
-        
-        //Enter transport mode
-        selectTransport = (TextView)findViewById(R.id.enter_transport);
-        selectTransport.setTypeface(font);
-        spinTransport = (Spinner)findViewById(R.id.transportspin);
-        spinTransport.setBackgroundColor(inputBgColour);
-        
-        //Enter description
-        enterDescription = (TextView)findViewById(R.id.enter_desc);
-        editDesc = (EditText)findViewById(R.id.editdesc);
-        editDesc.setBackgroundColor(inputBgColour);
-        
-        //Buttons
-        add = (Button)findViewById(R.id.add);
-        back = (Button)findViewById(R.id.backmain);
+        eventTitle = (TextView)findViewById(R.id.eventtitle);
+        eventDate = (TextView)findViewById(R.id.eventdate);
+        enterTitle = (EditText)findViewById(R.id.entertitle);
+        enterDate = (DatePicker)findViewById(R.id.enterdate);
         
         //Open database to write
         db = new DBManager(this);
         db.openToWrite();
         
-        add.setOnClickListener(buttonAddOnClickListener);  //listener for add country button
-        
-        //handle switching back to main screen
-        back.setOnClickListener(new View.OnClickListener() 
-        {
-			public void onClick(View v) 
-			{
-				db.close();
-				
-				finish();
-			}
-        });
     }
     
-    //insert new country button
-    Button.OnClickListener buttonAddOnClickListener = new Button.OnClickListener()
-    {  
-    	@Override
-	    public void onClick(View arg0) 
+//    // action bar
+//    @Override
+//	 public boolean onCreateOptionsMenu(Menu menu) 
+//	 {
+//    	//Inflate the menu. This adds items to the action bar if it is present.
+//    	MenuInflater inflater = getMenuInflater();
+//        inflater.inflate(R.menu.menu, menu);
+//        return true;
+//	 }
+    
+    // for up naviation
+    public boolean onOptionsItemSelected(MenuItem item) 
+    {
+    	switch (item.getItemId()) 
     	{
-		    String country = editCountry.getText().toString();
-		    int year = Integer.parseInt(spinYear.getSelectedItem().toString());
-		    String month = String.valueOf(spinMonth.getSelectedItem());
-		    String transport = String.valueOf(spinTransport.getSelectedItem());
-		    String desc = editDesc.getText().toString();
-		
-		    //check if the user has entered in a country name. if not do not allow them to continue
-		    if(country.equals(""))
-		    {
-		    	Toast.makeText(getApplicationContext(), "You have not entered a country", Toast.LENGTH_LONG).show();
-		    }
-		    else
-		    {
-		    	//if everything is ok then enter the info into the database
-		    	db.insert(country, year, month, transport, desc);
-			    
-			    Toast.makeText(getApplicationContext(), "Added", Toast.LENGTH_LONG).show();
-			    
-			    //reset edit fields and spinners after insert
-			    editCountry.setText(null);
-			    spinYear.setSelection(0, true);
-			    spinMonth.setSelection(0, true);
-			    spinTransport.setSelection(0, true);
-			    editDesc.setText(null);
-		    }
+	    	case android.R.id.home:
+	    		NavUtils.navigateUpFromSameTask(this);
+	    		overridePendingTransition(R.anim.slide_out_left_to_right, R.anim.slide_in_left_to_right);  //animation
+	    		return true;
     	}
-    };
+    	return super.onOptionsItemSelected(item);
+    }
     
-    //action bar
     @Override
-	 public boolean onCreateOptionsMenu(Menu menu) 
-	 {
-    	//Inflate the menu. This adds items to the action bar if it is present.
-    	MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
-        return true;
-	 }
+    public void onBackPressed() 
+    {
+    	moveTaskToBack(true); 
+        AddEvent.this.finish();
+    }
     
-    
+    // life cycles
     @Override
     protected void onDestroy() 
     {
@@ -145,4 +83,4 @@ public class AddEvent extends Activity
     	db.close();
     	finish();
     }
-}*/
+}

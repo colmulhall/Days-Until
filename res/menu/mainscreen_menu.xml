@@ -6,12 +6,5 @@
         android:showAsAction="ifRoom|withText"
         android:title="@string/new_event"
         android:icon="@drawable/ic_action_new" />
-    
-    <item
-        android:id="@+id/about_action"
-        android:orderInCategory="100"
-        android:showAsAction="always"
-        android:title="@string/about"
-        android:icon="@drawable/ic_action_about" />
 
 </menu>

@@ -5,5 +5,9 @@
     <!-- Mainscreen strings -->
     <string name="new_event">New</string>
     <string name="about">About</string>
+    
+    <!-- Addevent strings -->
+    <string name="eventtitle">Event Name</string>
+    <string name="eventdate">Event Date</string>
 
 </resources>
