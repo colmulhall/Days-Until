@@ -49,8 +49,7 @@ public class MainScreen extends Activity implements AdapterView.OnItemClickListe
         String[] from = new String[]{
         		DBManager.KEY_ID, 
         		DBManager.KEY_TITLE, 
-        		DBManager.KEY_DATE,
-        		DBManager.KEY_DAYS_UNTIL};
+        		DBManager.KEY_DATE};
         int[] to = new int[]{R.id.eventtext};
 
         @SuppressWarnings("deprecation")

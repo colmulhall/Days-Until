@@ -6,9 +6,12 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class AddEvent extends Activity
 {
@@ -16,6 +19,10 @@ public class AddEvent extends Activity
 	private TextView eventTitle, eventDate;
 	private EditText enterTitle;
 	private DatePicker enterDate;
+	private Button addEvent;
+	
+	// data entered
+	private String title, date;
 	
     // Called when the activity is first created.
     @Override
@@ -30,12 +37,62 @@ public class AddEvent extends Activity
         eventDate = (TextView)findViewById(R.id.eventdate);
         enterTitle = (EditText)findViewById(R.id.entertitle);
         enterDate = (DatePicker)findViewById(R.id.enterdate);
+        addEvent = (Button)findViewById(R.id.addevent);
+        addEvent.setOnClickListener(buttonAddOnClickListener);
         
         //Open database to write
         db = new DBManager(this);
         db.openToWrite();
-        
     }
+    
+    // add the new event
+    Button.OnClickListener buttonAddOnClickListener = new Button.OnClickListener()
+    {  
+    	@Override
+	    public void onClick(View arg0) 
+    	{
+		    //check if the user has entered in a country name. if not do not allow them to continue
+		   // if(title.isEmpty())
+		    //{
+		    	//Toast.makeText(getApplicationContext(), "You have not entered a title", Toast.LENGTH_LONG).show();
+		    //}
+		    //else
+		    //{
+		    	// get the data from the fields
+		    	getData();
+		    	
+		    	// insert the data into the database
+		    	db.insert(title, date);
+			    
+			    Toast.makeText(getApplicationContext(), "Added", Toast.LENGTH_LONG).show();
+			    
+			    // reset edit fields and spinners after insert
+			    enterTitle.setText(null);
+		    //}
+    	}
+    };
+    
+    // get the entered data
+    public void getData()
+    {
+    	String getTitle = enterTitle.getText().toString();
+	    int getYear = enterDate.getYear();
+	    int getMonth = enterDate.getMonth();
+	    int getDay = enterDate.getDayOfMonth();
+	    
+	    // set the data to the variables declared above
+	    title = getTitle;
+	    date = "" + getYear + "" + getMonth + "" + getDay;
+    }
+    
+    // validate the event title
+    public boolean isEmpty(String title)
+    {
+    	if(title.equals(""))
+    		return true;
+    	return false;
+    }
+    
     
 //    // action bar
 //    @Override
@@ -47,14 +104,14 @@ public class AddEvent extends Activity
 //        return true;
 //	 }
     
-    // for up naviation
+    // for up navigation
     public boolean onOptionsItemSelected(MenuItem item) 
     {
     	switch (item.getItemId()) 
     	{
 	    	case android.R.id.home:
 	    		NavUtils.navigateUpFromSameTask(this);
-	    		overridePendingTransition(R.anim.slide_out_left_to_right, R.anim.slide_in_left_to_right);  //animation
+	    		overridePendingTransition(R.anim.slide_out_left_to_right, R.anim.slide_in_left_to_right);  //animations
 	    		return true;
     	}
     	return super.onOptionsItemSelected(item);

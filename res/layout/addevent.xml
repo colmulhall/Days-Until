@@ -32,5 +32,12 @@
 		android:layout_gravity="center"
 		android:layout_marginBottom="5dp"
 		android:calendarViewShown="false" />
+    
+    <Button
+        android:id="@+id/addevent"
+		android:layout_width="150dp"
+		android:layout_height="50dp"
+		android:text="@string/addevent" 
+		android:layout_gravity="center"/>
    
 </LinearLayout>

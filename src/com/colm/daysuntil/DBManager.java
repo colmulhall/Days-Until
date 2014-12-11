@@ -13,7 +13,6 @@ public class DBManager
 	public static final String KEY_ID = "_id";
 	public static final String KEY_TITLE = "event_title";
 	public static final String KEY_DATE = "date";
-	public static final String KEY_DAYS_UNTIL = "days_until";
 	
 	public static final String DATABASE_NAME = "Days Until Database";
 	public static final String DATABASE_TABLE = "Events";
@@ -24,8 +23,7 @@ public class DBManager
 			"create table " + DATABASE_TABLE + " ("
 			+ KEY_ID + " integer primary key autoincrement, "
 			+ KEY_TITLE + " text not null,"
-			+ KEY_DATE + " integer ,"
-			+ KEY_DAYS_UNTIL + " text);";
+			+ KEY_DATE + " integer);";
 	
 	private Context context;
 	private DBHelper DBHelper;
@@ -80,23 +78,21 @@ public class DBManager
 	}
 	
 	//insert a new item into the database
-	public long insert(String title, int date, String month, String days_until)
+	public long insert(String title, String date)
 	{
 		ContentValues contentValues = new ContentValues();
 		contentValues.put(KEY_TITLE, title);
 		contentValues.put(KEY_DATE, date);
-		contentValues.put(KEY_DAYS_UNTIL, days_until);
 		
 		return db.insert(DATABASE_TABLE, null, contentValues);
 	}
 	
 	//edit an item in the database
-	public boolean update(int id, String title, int date, String month, String days_until)
+	public boolean update(int id, String title, String date)
 	{
 		ContentValues contentValues = new ContentValues();
 		contentValues.put(KEY_TITLE, title);
 		contentValues.put(KEY_DATE, date);
-		contentValues.put(KEY_DAYS_UNTIL, days_until);
 		
 		return db.update(DATABASE_TABLE, contentValues, KEY_ID + " = " + id, null) > 0;
 	}
@@ -119,8 +115,7 @@ public class DBManager
 		String[] columns = new String[]{
 				KEY_ID, 
 				KEY_TITLE,
-				KEY_DATE,
-				KEY_DAYS_UNTIL};
+				KEY_DATE};
 		Cursor cursor = db.query(DATABASE_TABLE, columns,
 		  null, null, null, null, null);
 	
@@ -133,8 +128,7 @@ public class DBManager
 		String[] columns = new String[]{
 				KEY_ID, 
 				KEY_TITLE,
-				KEY_DATE,
-				KEY_DAYS_UNTIL};
+				KEY_DATE};
 		
 		Cursor cursor = db.query(DATABASE_TABLE, columns, null, null, null, null, KEY_DATE + " DESC");
 		
