@@ -73,7 +73,7 @@ public class MainScreen extends Activity implements AdapterView.OnItemClickListe
     @Override
 	public void onItemClick(AdapterView<?> parent, View v, int position, long id) 
     {
-    	Intent intent = new Intent(MainScreen.this, DisplayEvent.class);
+    	Intent intent = new Intent(MainScreen.this, ViewEvent.class);
     	intent.putExtra(ID_EXTRA, String.valueOf(id));  //pass the id of the selected item with the intent
     	startActivity(intent);
     	overridePendingTransition(R.anim.slide_in_right_to_left, R.anim.slide_out_right_to_left);  //animation

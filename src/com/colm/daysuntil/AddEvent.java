@@ -29,7 +29,7 @@ public class AddEvent extends Activity
     public void onCreate(Bundle savedInstanceState) 
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.addevent);
+        setContentView(R.layout.addevent_layout);
         
         getActionBar().setDisplayHomeAsUpEnabled(true); // for up navigation
         

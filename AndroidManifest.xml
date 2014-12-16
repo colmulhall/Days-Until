@@ -13,6 +13,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
     
+        <!-- MainScreen -->
 	    <activity 
 	            android:name="com.colm.daysuntil.MainScreen" 
 	            android:label="@string/app_name"
@@ -24,8 +25,22 @@
 	            </intent-filter>
 	    </activity>
 	    
+	    <!-- AddEvent -->
 	    <activity 
 	        android:name="com.colm.daysuntil.AddEvent"
+	        android:label="@string/app_name"
+	        android:screenOrientation="portrait" 
+	        android:parentActivityName="com.colm.daysuntil.MainScreen" >
+	            
+	        <!-- Parent activity meta-data to support 4.0 and lower -->
+	        <meta-data
+	            android:name="android.support.PARENT_ACTIVITY"
+	            android:value="com.colm.daysuntil.MainScreen" />>
+		</activity>
+		
+	    <!-- ViewEvent -->
+	    <activity 
+	        android:name="com.colm.daysuntil.ViewEvent"
 	        android:label="@string/app_name"
 	        android:screenOrientation="portrait" 
 	        android:parentActivityName="com.colm.daysuntil.MainScreen" >

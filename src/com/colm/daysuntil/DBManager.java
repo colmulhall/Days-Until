@@ -136,7 +136,7 @@ public class DBManager
 	}
 
 	//getters for each item in the database *********************************************************
-	public String getEvent(int num)
+	public String getEventTitle(int num)
     {
 		Cursor cursor = db.query(DATABASE_TABLE, new String[] {"event_title"}, 
 				"_id like " + num, null, null, null, null);

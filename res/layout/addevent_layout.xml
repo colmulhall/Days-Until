@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <!-- Enter event name -->
+    <TextView
+        android:id="@+id/eventtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/eventtitle"/>
+     
+    <EditText
+	    android:id="@+id/entertitle"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:inputType="textCapSentences" 
+	    android:imeOptions="actionDone"/>
+    
+    <!-- Enter event date -->
+    <TextView
+        android:id="@+id/eventdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/eventdate"/>
+    
+    <DatePicker
+		android:id="@+id/enterdate"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center"
+		android:layout_marginBottom="5dp"
+		android:calendarViewShown="false" />
+    
+    <Button
+        android:id="@+id/addevent"
+		android:layout_width="150dp"
+		android:layout_height="50dp"
+		android:text="@string/addevent" 
+		android:layout_gravity="center"/>
+   
+</LinearLayout>
