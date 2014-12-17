@@ -51,24 +51,16 @@ public class AddEvent extends Activity
     	@Override
 	    public void onClick(View arg0) 
     	{
-		    //check if the user has entered in a country name. if not do not allow them to continue
-		   // if(title.isEmpty())
-		    //{
-		    	//Toast.makeText(getApplicationContext(), "You have not entered a title", Toast.LENGTH_LONG).show();
-		    //}
-		    //else
-		    //{
-		    	// get the data from the fields
-		    	getData();
+		    // get the data from the fields
+		    getData();
 		    	
-		    	// insert the data into the database
-		    	db.insert(title, date);
+		    // insert the data into the database
+		    db.insert(title, date);
 			    
-			    Toast.makeText(getApplicationContext(), "Added", Toast.LENGTH_LONG).show();
+			Toast.makeText(getApplicationContext(), "Added", Toast.LENGTH_LONG).show();
 			    
-			    // reset edit fields and spinners after insert
-			    enterTitle.setText(null);
-		    //}
+			// reset event field after insert
+			enterTitle.setText(null);
     	}
     };
     

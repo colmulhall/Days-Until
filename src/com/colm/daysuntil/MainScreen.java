@@ -47,8 +47,8 @@ public class MainScreen extends Activity implements AdapterView.OnItemClickListe
         cursor = db.orderList();
         
         String[] from = new String[]{
-        		DBManager.KEY_ID, 
-        		DBManager.KEY_TITLE, 
+        		DBManager.KEY_TITLE,
+        		DBManager.KEY_ID,  
         		DBManager.KEY_DATE};
         int[] to = new int[]{R.id.eventtext};
 
