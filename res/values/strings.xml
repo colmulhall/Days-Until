@@ -6,9 +6,12 @@
     <string name="new_event">New</string>
     <string name="about">About</string>
     
-    <!-- Addevent strings -->
+    <!-- AddEvent strings -->
     <string name="eventtitle">Event Name</string>
     <string name="eventdate">Event Date</string>
     <string name="addevent">Add</string>
+    
+    <!-- ViewEvent strings -->
+	<string name="deleteevent">Delete</string>
 
 </resources>

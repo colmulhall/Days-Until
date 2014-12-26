@@ -85,7 +85,6 @@ public class AddEvent extends Activity
     	return false;
     }
     
-    
 //    // action bar
 //    @Override
 //	 public boolean onCreateOptionsMenu(Menu menu) 
