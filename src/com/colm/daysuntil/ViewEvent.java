@@ -5,10 +5,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
-import org.joda.time.DateTime;
-import org.joda.time.Days;
-import org.joda.time.LocalDate;
-
 import com.example.daysuntil.R;
 
 import android.app.Activity;
@@ -56,19 +52,25 @@ public class ViewEvent extends Activity
         // get the information from the database
         event_title.setText(db.getEventTitle(id));
         days_until_event.setText(daysUntil());
-        event_date.setText(db.getDate(id));
+        event_date.setText(dateToNiceString());
     }
     
+	// calculate the days between the two dates
     public String daysUntil()
     {
     	SimpleDateFormat myFormat = new SimpleDateFormat("dd MM yyyy");
     	
-    	String year = db.getDate(id).substring(0, 4);
-    	String month = db.getDate(id).substring(4, 6);
-    	String day = db.getDate(id).substring(6, 8);
+    	// format the date from the database
+    	String theDateFromTheDB = db.getDate(id);
+    	String year = theDateFromTheDB.substring(0, 4);
+    	String month = theDateFromTheDB.substring(4, 6);
+    	String day = theDateFromTheDB.substring(6, 8);
     	
+    	// get todays date
     	Date now = new Date();
     	String todaysDate = myFormat.format(now);
+    	
+    	// ...and the date for this event from the database
     	String eventDate = day + " " + month + " " + year;
     	String daysUntil = "";
     	
@@ -79,13 +81,66 @@ public class ViewEvent extends Activity
     	    long diff = date2.getTime() - date1.getTime();
     	    
     	    // calculate the number of days between the two dates
-    	    daysUntil = "Days: " + TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
+    	    daysUntil = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS) + " days";
     	} 
     	catch (ParseException e) 
     	{
     	    e.printStackTrace();
     	}
     	return daysUntil;
+    }
+    
+    // get a string from a date. (e.g. 01-01-2014 will return as 1 Jan 2014)
+    public String dateToNiceString()
+    {
+    	String theDateFromTheDB = db.getDate(id);
+    	String year = theDateFromTheDB.substring(0, 4);
+    	String month = theDateFromTheDB.substring(4, 6);
+    	String day = theDateFromTheDB.substring(6, 8);
+    	
+    	switch(month)
+    	{
+    		case "01":
+    			month = "Jan";
+    			break;
+    		case "02":
+    			month = "Feb";
+    			break;
+    		case "03":
+    			month = "Mar";
+    			break;
+    		case "04":
+    			month = "Apr";
+    			break;
+    		case "05":
+    			month = "May";
+    			break;
+    		case "06":
+    			month = "Jun";
+    			break;
+    		case "07":
+    			month = "Jul";
+    			break;
+    		case "08":
+    			month = "Aug";
+    			break;
+    		case "09":
+    			month = "Sep";
+    			break;
+    		case "10":
+    			month = "Oct";
+    			break;
+    		case "11":
+    			month = "Nov";
+    			break;
+    		case "12":
+    			month = "Dec";
+    			break;
+    		default:
+    			break;
+    	}
+    	
+    	return day + " " + month + " " + year;
     }
         
 	// action bar
