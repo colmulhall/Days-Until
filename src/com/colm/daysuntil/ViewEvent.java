@@ -36,7 +36,7 @@ public class ViewEvent extends Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.viewevent);
 		
-		//intent passed data
+		// intent passed data
 		passedValue = getIntent().getStringExtra(MainScreen.ID_EXTRA);
 		id = Integer.parseInt(passedValue);
 		
@@ -55,38 +55,40 @@ public class ViewEvent extends Activity
         
         // get the information from the database
         event_title.setText(db.getEventTitle(id));
-        //days_until_event.setText(daysUntil());
+        days_until_event.setText(daysUntil());
         event_date.setText(db.getDate(id));
     }
     
-//    public String daysUntil()
-//    {
-//    	SimpleDateFormat myFormat = new SimpleDateFormat("dd MM yyyy");
-//    	
-//    	String year = db.getDate(id).substring(0, 3);
-//    	String month = db.getDate(id).substring(start, end);
-//    	
-//    	if(d)
-//    	String todaysDate = "23 01 2014";
-//    	String eventDate = "26 01 2013";
-//    	String daysUntil = "";
-//    	try 
-//    	{
-//    	    Date date1 = myFormat.parse(todaysDate);
-//    	    Date date2 = myFormat.parse(eventDate);
-//    	    long diff = date2.getTime() - date1.getTime();
-//    	    
-//    	    // calculate the number of days between the two dates
-//    	    daysUntil = "Days: " + TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
-//    	} 
-//    	catch (ParseException e) 
-//    	{
-//    	    e.printStackTrace();
-//    	}
-//    	return daysUntil;
-//    }
+    public String daysUntil()
+    {
+    	SimpleDateFormat myFormat = new SimpleDateFormat("dd MM yyyy");
+    	
+    	String year = db.getDate(id).substring(0, 4);
+    	String month = db.getDate(id).substring(4, 6);
+    	String day = db.getDate(id).substring(6, 8);
+    	
+    	Date now = new Date();
+    	String todaysDate = myFormat.format(now);
+    	String eventDate = day + " " + month + " " + year;
+    	String daysUntil = "";
+    	
+    	try 
+    	{
+    	    Date date1 = myFormat.parse(todaysDate);
+    	    Date date2 = myFormat.parse(eventDate);
+    	    long diff = date2.getTime() - date1.getTime();
+    	    
+    	    // calculate the number of days between the two dates
+    	    daysUntil = "Days: " + TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
+    	} 
+    	catch (ParseException e) 
+    	{
+    	    e.printStackTrace();
+    	}
+    	return daysUntil;
+    }
         
-//	//action bar
+	// action bar
     @Override
 	 public boolean onCreateOptionsMenu(Menu menu) 
 	 {
@@ -96,7 +98,7 @@ public class ViewEvent extends Activity
         return true;
 	 }
     
- // for up navigation
+    // for up navigation
     public boolean onOptionsItemSelected(MenuItem item) 
     {
     	switch (item.getItemId()) 
