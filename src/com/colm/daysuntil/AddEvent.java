@@ -1,5 +1,7 @@
 package com.colm.daysuntil;
 
+import java.text.DecimalFormat;
+
 import com.example.daysuntil.R;
 
 import android.app.Activity;
@@ -68,13 +70,36 @@ public class AddEvent extends Activity
     public void getData()
     {
     	String getTitle = enterTitle.getText().toString();
+    	
 	    int getYear = enterDate.getYear();
-	    int getMonth = enterDate.getMonth();
+	    int getMonth = enterDate.getMonth()+1;
 	    int getDay = enterDate.getDayOfMonth();
 	    
 	    // set the data to the variables declared above
 	    title = getTitle;
-	    date = "" + getYear + "" + getMonth + "" + getDay;
+
+	    // ugly date formatting stuff
+	    if(getDay < 10 && getMonth < 10)
+	    {
+		    DecimalFormat df = new DecimalFormat("00");
+		    String m = df.format(getMonth);
+		    String d = df.format(getDay);
+		    date = "" + getYear + "" + m + "" + d;
+	    }
+	    else if(getDay < 10 && getMonth >= 10)
+	    {
+	    	DecimalFormat df = new DecimalFormat("00");
+	    	String d = df.format(getDay);
+	    	date = "" + getYear + "" + getMonth + "" + d;
+	    }
+	    else if(getMonth < 10 && getDay >= 10)
+	    {
+	    	DecimalFormat df = new DecimalFormat("00");
+	    	String m = df.format(getMonth);
+	    	date = "" + getYear + "" + m + "" + getDay;
+	    }
+	    else
+	    	date = "" + getYear + "" + getMonth + "" + getDay;
     }
     
     // validate the event title
@@ -102,7 +127,7 @@ public class AddEvent extends Activity
     	{
 	    	case android.R.id.home:
 	    		NavUtils.navigateUpFromSameTask(this);
-	    		overridePendingTransition(R.anim.slide_out_left_to_right, R.anim.slide_in_left_to_right);  //animations
+	    		overridePendingTransition(R.anim.slide_out_left_to_right, R.anim.slide_in_left_to_right);  // animations
 	    		return true;
     	}
     	return super.onOptionsItemSelected(item);

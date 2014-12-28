@@ -1,8 +1,10 @@
 package com.colm.daysuntil;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
-import org.joda.time.DateMidnight;
 import org.joda.time.DateTime;
 import org.joda.time.Days;
 import org.joda.time.LocalDate;
@@ -53,24 +55,36 @@ public class ViewEvent extends Activity
         
         // get the information from the database
         event_title.setText(db.getEventTitle(id));
-    	
-        //int days = daysUntil();
-        
         //days_until_event.setText(daysUntil());
-        
         event_date.setText(db.getDate(id));
     }
-	
-	// calculate the days between the two dates. This uses the Jodatime library
-    public int daysUntil()
-    {
-    	LocalDate start = new LocalDate(2014, 01, 01);
-    	LocalDate end = new LocalDate(2015, 03, 04);
-    	
-    	int daysBetween = Days.daysBetween(start, end).getDays();
-    	 
-    	return daysBetween;
-    }
+    
+//    public String daysUntil()
+//    {
+//    	SimpleDateFormat myFormat = new SimpleDateFormat("dd MM yyyy");
+//    	
+//    	String year = db.getDate(id).substring(0, 3);
+//    	String month = db.getDate(id).substring(start, end);
+//    	
+//    	if(d)
+//    	String todaysDate = "23 01 2014";
+//    	String eventDate = "26 01 2013";
+//    	String daysUntil = "";
+//    	try 
+//    	{
+//    	    Date date1 = myFormat.parse(todaysDate);
+//    	    Date date2 = myFormat.parse(eventDate);
+//    	    long diff = date2.getTime() - date1.getTime();
+//    	    
+//    	    // calculate the number of days between the two dates
+//    	    daysUntil = "Days: " + TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
+//    	} 
+//    	catch (ParseException e) 
+//    	{
+//    	    e.printStackTrace();
+//    	}
+//    	return daysUntil;
+//    }
         
 //	//action bar
     @Override
