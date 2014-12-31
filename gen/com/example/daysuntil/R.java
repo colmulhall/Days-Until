@@ -23,26 +23,25 @@ public final class R {
         public static final int ic_launcher=0x7f020003;
     }
     public static final class id {
-        public static final int about_action=0x7f080009;
-        public static final int actionbarlabel=0x7f080000;
-        public static final int add_action=0x7f08000a;
-        public static final int addevent=0x7f080005;
-        public static final int daysuntilevent=0x7f080008;
-        public static final int deleteevent=0x7f08000b;
-        public static final int enterdate=0x7f080004;
-        public static final int entertitle=0x7f080002;
-        public static final int eventdate=0x7f080003;
-        public static final int eventtext=0x7f080007;
-        public static final int eventtitle=0x7f080001;
-        public static final int list=0x7f080006;
+        public static final int about_action=0x7f080008;
+        public static final int add_action=0x7f080009;
+        public static final int addevent=0x7f080004;
+        public static final int daysuntilevent=0x7f080007;
+        public static final int deleteevent=0x7f08000a;
+        public static final int enterdate=0x7f080003;
+        public static final int entertitle=0x7f080001;
+        public static final int eventdate=0x7f080002;
+        public static final int eventtext=0x7f080006;
+        public static final int eventtitle=0x7f080000;
+        public static final int list=0x7f080005;
     }
     public static final class layout {
-        public static final int abs_layout=0x7f030000;
-        public static final int addevent=0x7f030001;
-        public static final int addevent_layout=0x7f030002;
-        public static final int displayevent=0x7f030003;
-        public static final int mainscreen=0x7f030004;
-        public static final int row=0x7f030005;
+        public static final int addevent=0x7f030000;
+        public static final int addevent_layout=0x7f030001;
+        public static final int displayevent=0x7f030002;
+        public static final int mainscreen=0x7f030003;
+        public static final int row=0x7f030004;
+        public static final int splash_layout=0x7f030005;
         public static final int viewevent=0x7f030006;
     }
     public static final class menu {

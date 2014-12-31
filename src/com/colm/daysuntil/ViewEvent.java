@@ -4,9 +4,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
-
 import com.example.daysuntil.R;
-
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -56,7 +55,8 @@ public class ViewEvent extends Activity
     }
     
 	// calculate the days between the two dates
-    public String daysUntil()
+    @SuppressLint("SimpleDateFormat")
+	public String daysUntil()
     {
     	SimpleDateFormat myFormat = new SimpleDateFormat("dd MM yyyy");
     	
@@ -74,15 +74,23 @@ public class ViewEvent extends Activity
     	String eventDate = day + " " + month + " " + year;
     	String daysUntil = "";
     	
+    	
+    	// calculate the number of days between the two dates
     	try 
     	{
     	    Date date1 = myFormat.parse(todaysDate);
     	    Date date2 = myFormat.parse(eventDate);
     	    long diff = date2.getTime() - date1.getTime();
     	    
-    	    // calculate the number of days between the two dates
-    	    daysUntil = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS) + " days";
-    	} 
+    	    if(diff > 1)
+    	    	daysUntil = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS) + " days";
+    	    else if(diff == 1)
+    	    	daysUntil = "Tomorrow";
+    	    else if(diff == 0)
+    	    	daysUntil = "Today";
+    	    else
+    	    	daysUntil = "PAST YO";
+    	}
     	catch (ParseException e) 
     	{
     	    e.printStackTrace();

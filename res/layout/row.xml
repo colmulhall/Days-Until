@@ -6,6 +6,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical" >
 
+    <!-- Event title -->
     <TextView
         android:id="@+id/eventtext"
         android:layout_width="match_parent"
@@ -15,5 +16,15 @@
         android:gravity="center_horizontal"
         android:paddingRight="10dip"
         android:textSize="30sp" />
+    
+    <!-- Event date -->
+    <!-- <TextView
+        android:id="@+id/eventdaterow"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:padding="2dip"
+        android:textIsSelectable="false"
+        android:gravity="center_horizontal"
+        android:textSize="12sp" /> -->
 
 </LinearLayout>

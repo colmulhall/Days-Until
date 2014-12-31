@@ -18,7 +18,7 @@ public class DBManager
 	public static final String DATABASE_TABLE = "Events";
 	public static final int DATABASE_VERSION = 5;
 	
-	//create database table
+	// create database table
 	private static final String SCRIPT_CREATE_DATABASE =
 			"create table " + DATABASE_TABLE + " ("
 			+ KEY_ID + " integer primary key autoincrement, "
@@ -34,7 +34,7 @@ public class DBManager
 		context = ctx;
 	}
 	
-	//beginning of helper class **************************************************************************
+	// beginning of helper class **************************************************************************
 	public class DBHelper extends SQLiteOpenHelper 
 	{
 		public DBHelper(Context context, String name, CursorFactory factory, int version)
@@ -71,13 +71,13 @@ public class DBManager
 		return this;
 	}
 	
-	//close the database
+	// close the database
 	public void close()
 	{
 		DBHelper.close();
 	}
 	
-	//insert a new item into the database
+	// insert a new item into the database
 	public long insert(String title, String date)
 	{
 		ContentValues contentValues = new ContentValues();
@@ -87,7 +87,7 @@ public class DBManager
 		return db.insert(DATABASE_TABLE, null, contentValues);
 	}
 	
-	//edit an item in the database
+	// edit an item in the database
 	public boolean update(int id, String title, String date)
 	{
 		ContentValues contentValues = new ContentValues();
@@ -97,19 +97,19 @@ public class DBManager
 		return db.update(DATABASE_TABLE, contentValues, KEY_ID + " = " + id, null) > 0;
 	}
 	
-	//delete everything from the database
+	// delete everything from the database
 	public int deleteAll()
 	{
 		return db.delete(DATABASE_TABLE, null, null);
 	}
 	
-	//delete the database 
+	// delete the database 
 	public void deleteDatabase()
 	{
 		context.deleteDatabase(DATABASE_NAME);
 	}
 	
-	//queue the items in the database
+	// queue the items in the database
 	public Cursor queueAll()
 	{
 		String[] columns = new String[]{
@@ -122,7 +122,7 @@ public class DBManager
 		return cursor;
 	}
 	
-	//order the list by the date in descending order
+	// order the list by the date in descending order
 	public Cursor orderList()
 	{
 		String[] columns = new String[]{
@@ -135,7 +135,7 @@ public class DBManager
 		return cursor;
 	}
 
-	//getters for each item in the database *********************************************************
+	// getters for each item in the database *********************************************************
 	public String getEventTitle(int num)
     {
 		Cursor cursor = db.query(DATABASE_TABLE, new String[] {"event_title"}, 
@@ -165,10 +165,9 @@ public class DBManager
 	
 	//***************************************************************************************************
 	
-	//delete a particular event, based on its passed in ID
+	// delete a particular event, based on its ID
 	public void deleteEvent(int num)
 	{
 		db.delete(DATABASE_TABLE, KEY_ID + " = " + num, null);
 	}
-	
 }

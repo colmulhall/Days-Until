@@ -2,7 +2,6 @@ package com.colm.daysuntil;
 
 import com.example.daysuntil.R;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
@@ -29,9 +28,6 @@ public class MainScreen extends Activity implements AdapterView.OnItemClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mainscreen);
         
-        getActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM); 
-        getActionBar().setCustomView(R.layout.abs_layout);
-        
         listContent = (ListView)findViewById(R.id.list);
         
         // setup the data from the database
@@ -48,8 +44,8 @@ public class MainScreen extends Activity implements AdapterView.OnItemClickListe
         
         String[] from = new String[]{
         		DBManager.KEY_TITLE,
-        		DBManager.KEY_ID,  
-        		DBManager.KEY_DATE};
+        		DBManager.KEY_DATE,
+        		DBManager.KEY_ID};
         int[] to = new int[]{R.id.eventtext};
 
         @SuppressWarnings("deprecation")

@@ -1,9 +1,11 @@
 package com.colm.daysuntil;
 
 import java.text.DecimalFormat;
-
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import com.example.daysuntil.R;
-
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
@@ -42,7 +44,7 @@ public class AddEvent extends Activity
         addEvent = (Button)findViewById(R.id.addevent);
         addEvent.setOnClickListener(buttonAddOnClickListener);
         
-        //Open database to write
+        // Open database to write
         db = new DBManager(this);
         db.openToWrite();
     }
@@ -56,13 +58,23 @@ public class AddEvent extends Activity
 		    // get the data from the fields
 		    getData();
 		    	
-		    // insert the data into the database
-		    db.insert(title, date);
-			    
-			Toast.makeText(getApplicationContext(), "Added", Toast.LENGTH_LONG).show();
-			    
-			// reset event field after insert
-			enterTitle.setText(null);
+		    // perform validation and the insert
+		    if(dateIsInThePast())
+		    {
+		    	Toast.makeText(getApplicationContext(), "Please enter a future date", Toast.LENGTH_LONG).show();
+		    }
+		    else if(title == null || title.isEmpty())
+		    {
+		    	Toast.makeText(getApplicationContext(), "Please enter an event title", Toast.LENGTH_LONG).show();
+		    }
+		    else
+		    {
+		    	db.insert(title, date);
+		    	Toast.makeText(getApplicationContext(), "Added", Toast.LENGTH_LONG).show();
+		    	
+		    	// reset event field after insert
+				enterTitle.setText(null);
+		    }
     	}
     };
     
@@ -102,11 +114,31 @@ public class AddEvent extends Activity
 	    	date = "" + getYear + "" + getMonth + "" + getDay;
     }
     
-    // validate the event title
-    public boolean isEmpty(String title)
+    // check if the entered date is in the past
+    @SuppressLint("SimpleDateFormat")
+	public boolean dateIsInThePast()
     {
-    	if(title.equals(""))
-    		return true;
+    	SimpleDateFormat myFormat = new SimpleDateFormat("dd MM yyyy");
+    	
+    	// get todays date
+    	Date now = new Date();
+    	
+    	String year = date.substring(0, 4);
+    	String month = date.substring(4, 6);
+    	String day = date.substring(6, 8);
+    	String testDate = day + " " + month + " " + year;
+    	try 
+    	{
+			if (myFormat.parse(testDate).before(now)) 
+			{
+				// date is in the past
+				return true;
+			}
+		} 
+    	catch (ParseException e1) 
+    	{
+			e1.printStackTrace();
+		}
     	return false;
     }
     
