@@ -122,7 +122,7 @@ public class DBManager
 		return cursor;
 	}
 	
-	// order the list by the date in descending order
+	// order the list by the date in ascending order
 	public Cursor orderList()
 	{
 		String[] columns = new String[]{
@@ -130,7 +130,7 @@ public class DBManager
 				KEY_TITLE,
 				KEY_DATE};
 		
-		Cursor cursor = db.query(DATABASE_TABLE, columns, null, null, null, null, KEY_DATE + " DESC");
+		Cursor cursor = db.query(DATABASE_TABLE, columns, null, null, null, null, KEY_DATE + " ASC");
 		
 		return cursor;
 	}

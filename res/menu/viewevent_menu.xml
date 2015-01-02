@@ -8,4 +8,11 @@
         android:showAsAction="ifRoom"
         android:title="@string/deleteevent" />
     
+    <item
+        android:id="@+id/editevent"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_action_discard"
+        android:showAsAction="ifRoom"
+        android:title="@string/editevent" />
+    
 </menu>

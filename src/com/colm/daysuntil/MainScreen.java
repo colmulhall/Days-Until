@@ -19,7 +19,7 @@ public class MainScreen extends Activity implements AdapterView.OnItemClickListe
 	private DBManager db;
 	private Cursor cursor;
 	private ListView listContent;
-	public final static String ID_EXTRA = "com.mypackage.msdassignment._ID";
+	public final static String ID_EXTRA = "com.colm.daysuntil._ID";
 
     // Called when the activity is first created.
     @Override

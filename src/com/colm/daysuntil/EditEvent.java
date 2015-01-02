@@ -4,7 +4,9 @@ import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
 import com.example.daysuntil.R;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
@@ -17,13 +19,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class AddEvent extends Activity
+public class EditEvent extends Activity
 {
 	private DBManager db;
 	private TextView eventTitle, eventDate;
-	private EditText enterTitle;
-	private DatePicker enterDate;
-	private Button addEvent;
+	private EditText editTitle;
+	private DatePicker editDate;
+	private Button updateEvent;
+	private String passedValue;
+	public int id;
+	public final static String ID_EXTRA = "com.colm.daysuntil._ID";
 	
 	// data entered
 	private String title, date;
@@ -33,23 +38,30 @@ public class AddEvent extends Activity
     public void onCreate(Bundle savedInstanceState) 
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.addevent_layout);
+        setContentView(R.layout.editevent_layout);
         
+        // intent passed data
+     	passedValue = getIntent().getStringExtra(MainScreen.ID_EXTRA);
+     	id = Integer.parseInt(passedValue);
+     	
         getActionBar().setDisplayHomeAsUpEnabled(true); // for up navigation
         
         eventTitle = (TextView)findViewById(R.id.eventtitle);
         eventDate = (TextView)findViewById(R.id.eventdate);
-        enterTitle = (EditText)findViewById(R.id.entertitle);
-        enterDate = (DatePicker)findViewById(R.id.enterdate);
-        addEvent = (Button)findViewById(R.id.addevent);
-        addEvent.setOnClickListener(buttonAddOnClickListener);
+        editTitle = (EditText)findViewById(R.id.edittitle);
+        editDate = (DatePicker)findViewById(R.id.editdate);
+        updateEvent = (Button)findViewById(R.id.updateevent);
+        updateEvent.setOnClickListener(buttonAddOnClickListener);
         
         // Open database to write
         db = new DBManager(this);
         db.openToWrite();
+        
+        // set the data from the db
+        setupData();
     }
     
-    // add the new event
+    // edit the event
     Button.OnClickListener buttonAddOnClickListener = new Button.OnClickListener()
     {  
     	@Override
@@ -58,7 +70,7 @@ public class AddEvent extends Activity
 		    // get the data from the fields
 		    getData();
 		    	
-		    // perform validation and the insert
+		    // perform validation and the update
 		    if(dateIsInThePast())
 		    {
 		    	Toast.makeText(getApplicationContext(), "Please enter a future date", Toast.LENGTH_LONG).show();
@@ -69,23 +81,82 @@ public class AddEvent extends Activity
 		    }
 		    else
 		    {
-		    	db.insert(title, date);
-		    	Toast.makeText(getApplicationContext(), "Added", Toast.LENGTH_LONG).show();
-		    	
-		    	// reset event field after insert
-				enterTitle.setText(null);
+		    	db.update(id, title, date);
+		    	Toast.makeText(getApplicationContext(), "Updated", Toast.LENGTH_LONG).show();
 		    }
     	}
     };
     
+    // set the data that is to be edited
+    public void setupData()
+    {
+    	// set the event title
+    	editTitle.setText(db.getEventTitle(id));
+    	
+    	// set the event date
+    	String theDateFromTheDB = db.getDate(id);
+    	String year = theDateFromTheDB.substring(0, 4);
+    	String month = theDateFromTheDB.substring(4, 6);
+    	String day = theDateFromTheDB.substring(6, 8);
+    	
+    	// set the month to the previous month. (weird glitch)
+    	switch(month)
+    	{
+    		case "01":
+    			month = "12";
+    			break;
+    		case "02":
+    			month = "01";
+    			break;
+    		case "03":
+    			month = "02";
+    			break;
+    		case "04":
+    			month = "03";
+    			break;
+    		case "05":
+    			month = "04";
+    			break;
+    		case "06":
+    			month = "05";
+    			break;
+    		case "07":
+    			month = "06";
+    			break;
+    		case "08":
+    			month = "07";
+    			break;
+    		case "09":
+    			month = "08";
+    			break;
+    		case "10":
+    			month = "09";
+    			break;
+    		case "11":
+    			month = "10";
+    			break;
+    		case "12":
+    			month = "11";
+    			break;
+    		default:
+    			break;
+    	}
+    	
+    	// another weird glitch where the year get automatically incremented when the month is January
+    	if(month == "12")
+    		editDate.updateDate(Integer.parseInt(year)-1, Integer.parseInt(month), Integer.parseInt(day));
+    	else
+    		editDate.updateDate(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day));
+    }
+    
     // get the entered data
     public void getData()
     {
-    	String getTitle = enterTitle.getText().toString();
+    	String getTitle = editTitle.getText().toString();
     	
-	    int getYear = enterDate.getYear();
-	    int getMonth = enterDate.getMonth()+1;
-	    int getDay = enterDate.getDayOfMonth();
+	    int getYear = editDate.getYear();
+	    int getMonth = editDate.getMonth()+1;
+	    int getDay = editDate.getDayOfMonth();
 	    
 	    // set the data to the variables declared above
 	    title = getTitle;
@@ -170,7 +241,7 @@ public class AddEvent extends Activity
     public void onBackPressed() 
     {
     	moveTaskToBack(true); 
-        AddEvent.this.finish();
+        EditEvent.this.finish();
     }
     
     // life cycles

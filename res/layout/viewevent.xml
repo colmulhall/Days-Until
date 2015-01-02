@@ -5,20 +5,34 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
+    <!-- Days Until -->
+    <TextView
+        android:id="@+id/daysuntil"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="50dp"
+        android:textSize="30sp"
+        android:text="@string/daysuntil"/>
+    
+    <!-- Event title -->
     <TextView
         android:id="@+id/eventtitle"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:textSize="60sp"/>
+        android:textSize="50sp"/>
 
+    <!-- Number of days until -->
     <TextView
         android:id="@+id/daysuntilevent"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
+        android:layout_marginTop="40dp"
         android:textSize="40sp"/>
 
+    <!-- Event date -->
     <TextView
         android:id="@+id/eventdate"
         android:layout_width="fill_parent"

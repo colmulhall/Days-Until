@@ -13,5 +13,10 @@
     
     <!-- ViewEvent strings -->
 	<string name="deleteevent">Delete</string>
-
+	<string name="editevent">Edit</string>
+	<string name="daysuntil">Days Until</string>
+	
+	<!-- EditEvent strings -->
+	<string name="updateevent">Update Event</string>
+	
 </resources>

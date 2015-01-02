@@ -4,11 +4,14 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
+
 import com.example.daysuntil.R;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.Menu;
@@ -23,7 +26,7 @@ public class ViewEvent extends Activity
 	private String passedValue;
 	private TextView event_title, days_until_event, event_date;
 	public int id;
-	public final static String ID_EXTRA = "com.mypackage.msdassignment._ID";
+	public final static String ID_EXTRA = "com.colm.daysuntil._ID";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
@@ -89,7 +92,7 @@ public class ViewEvent extends Activity
     	    else if(diff == 0)
     	    	daysUntil = "Today";
     	    else
-    	    	daysUntil = "PAST YO";
+    	    	daysUntil = "This event has passed";
     	}
     	catch (ParseException e) 
     	{
@@ -171,6 +174,12 @@ public class ViewEvent extends Activity
 	    		NavUtils.navigateUpFromSameTask(this);
 	    		overridePendingTransition(R.anim.slide_out_left_to_right, R.anim.slide_in_left_to_right);  //animations
 	    		return true;
+	    		
+	    	// edit the event
+	    	case R.id.editevent:
+	    		Intent intent = new Intent(ViewEvent.this, EditEvent.class);
+	    		intent.putExtra(ID_EXTRA, String.valueOf(id)); 
+				startActivity(intent);
 	    	
 	    	// deleting the event
 	    	case R.id.deleteevent:
