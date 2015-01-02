@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
     
-    <item
-        android:id="@+id/deleteevent"
-        android:orderInCategory="100"
-        android:icon="@drawable/ic_action_discard"
-        android:showAsAction="ifRoom"
-        android:title="@string/deleteevent" />
-    
+    <!-- Edit -->
     <item
         android:id="@+id/editevent"
         android:orderInCategory="100"
-        android:icon="@drawable/ic_action_discard"
-        android:showAsAction="ifRoom"
+        android:showAsAction="never"
         android:title="@string/editevent" />
+    
+    <!-- Delete -->
+    <item
+        android:id="@+id/deleteevent"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/deleteevent" />
     
 </menu>

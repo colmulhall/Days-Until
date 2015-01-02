@@ -42,6 +42,7 @@ public class ViewEvent extends Activity
 		days_until_event = (TextView)findViewById(R.id.daysuntilevent);
 		event_date = (TextView)findViewById(R.id.eventdate);
 		
+		// get the data from the db
 		setupData();
 	}
 	
@@ -172,18 +173,21 @@ public class ViewEvent extends Activity
     		// up navigation back pressed
 	    	case android.R.id.home:
 	    		NavUtils.navigateUpFromSameTask(this);
-	    		overridePendingTransition(R.anim.slide_out_left_to_right, R.anim.slide_in_left_to_right);  //animations
+	    		overridePendingTransition(R.anim.slide_in_left_to_right, R.anim.slide_out_left_to_right);  //animation
 	    		return true;
 	    		
 	    	// edit the event
 	    	case R.id.editevent:
 	    		Intent intent = new Intent(ViewEvent.this, EditEvent.class);
 	    		intent.putExtra(ID_EXTRA, String.valueOf(id)); 
-				startActivity(intent);
+	    		startActivity(intent);
+	    		overridePendingTransition(R.anim.slide_in_right_to_left, R.anim.slide_out_right_to_left);  //animation
+				break;
 	    	
 	    	// deleting the event
 	    	case R.id.deleteevent:
 	    		displayDialog();  // display "are you sure" dialog
+	    		break;
     	}
     	return super.onOptionsItemSelected(item);
     }

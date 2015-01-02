@@ -28,9 +28,9 @@ public final class R {
         public static final int addevent=0x7f080004;
         public static final int daysuntil=0x7f08000a;
         public static final int daysuntilevent=0x7f08000b;
-        public static final int deleteevent=0x7f08000e;
+        public static final int deleteevent=0x7f08000f;
         public static final int editdate=0x7f080006;
-        public static final int editevent=0x7f08000f;
+        public static final int editevent=0x7f08000e;
         public static final int edittitle=0x7f080005;
         public static final int enterdate=0x7f080003;
         public static final int entertitle=0x7f080001;

@@ -160,7 +160,7 @@ public class AddEvent extends Activity
     	{
 	    	case android.R.id.home:
 	    		NavUtils.navigateUpFromSameTask(this);
-	    		overridePendingTransition(R.anim.slide_out_left_to_right, R.anim.slide_in_left_to_right);  // animations
+	    		overridePendingTransition(R.anim.slide_in_left_to_right, R.anim.slide_out_left_to_right);  // animations
 	    		return true;
     	}
     	return super.onOptionsItemSelected(item);

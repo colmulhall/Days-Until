@@ -214,16 +214,6 @@ public class EditEvent extends Activity
     	return false;
     }
     
-//    // action bar
-//    @Override
-//	 public boolean onCreateOptionsMenu(Menu menu) 
-//	 {
-//    	//Inflate the menu. This adds items to the action bar if it is present.
-//    	MenuInflater inflater = getMenuInflater();
-//        inflater.inflate(R.menu.menu, menu);
-//        return true;
-//	 }
-    
     // for up navigation
     public boolean onOptionsItemSelected(MenuItem item) 
     {
@@ -231,7 +221,7 @@ public class EditEvent extends Activity
     	{
 	    	case android.R.id.home:
 	    		NavUtils.navigateUpFromSameTask(this);
-	    		overridePendingTransition(R.anim.slide_out_left_to_right, R.anim.slide_in_left_to_right);  // animations
+	    		overridePendingTransition(R.anim.slide_in_left_to_right, R.anim.slide_out_left_to_right);  //animation
 	    		return true;
     	}
     	return super.onOptionsItemSelected(item);
