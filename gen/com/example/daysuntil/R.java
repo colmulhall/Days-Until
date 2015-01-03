@@ -14,6 +14,9 @@ public final class R {
         public static final int slide_out_left_to_right=0x7f040002;
         public static final int slide_out_right_to_left=0x7f040003;
     }
+    public static final class array {
+        public static final int planets_array=0x7f060000;
+    }
     public static final class attr {
     }
     public static final class drawable {
@@ -23,36 +26,40 @@ public final class R {
         public static final int ic_launcher=0x7f020003;
     }
     public static final class id {
-        public static final int about_action=0x7f08000c;
-        public static final int add_action=0x7f08000d;
-        public static final int addevent=0x7f080004;
-        public static final int daysuntil=0x7f08000a;
-        public static final int daysuntilevent=0x7f08000b;
-        public static final int deleteevent=0x7f08000f;
-        public static final int editdate=0x7f080006;
-        public static final int editevent=0x7f08000e;
-        public static final int edittitle=0x7f080005;
-        public static final int enterdate=0x7f080003;
-        public static final int entertitle=0x7f080001;
-        public static final int eventdate=0x7f080002;
-        public static final int eventtext=0x7f080009;
-        public static final int eventtitle=0x7f080000;
-        public static final int list=0x7f080008;
-        public static final int updateevent=0x7f080007;
+        public static final int about_action=0x7f09000e;
+        public static final int add_action=0x7f09000f;
+        public static final int addevent=0x7f090004;
+        public static final int daysuntil=0x7f09000c;
+        public static final int daysuntilevent=0x7f09000d;
+        public static final int deleteevent=0x7f090011;
+        public static final int editdate=0x7f090007;
+        public static final int editevent=0x7f090010;
+        public static final int edittitle=0x7f090006;
+        public static final int enterdate=0x7f090003;
+        public static final int entertitle=0x7f090001;
+        public static final int eventdate=0x7f090002;
+        public static final int eventtext=0x7f09000b;
+        public static final int eventtitle=0x7f090000;
+        public static final int gridViewColors=0x7f090005;
+        public static final int list=0x7f09000a;
+        public static final int listView=0x7f090009;
+        public static final int updateevent=0x7f090008;
     }
     public static final class layout {
         public static final int addevent_layout=0x7f030000;
-        public static final int displayevent=0x7f030001;
-        public static final int editevent_layout=0x7f030002;
-        public static final int mainscreen=0x7f030003;
-        public static final int row=0x7f030004;
-        public static final int splash_layout=0x7f030005;
-        public static final int viewevent=0x7f030006;
+        public static final int color_picker=0x7f030001;
+        public static final int displayevent=0x7f030002;
+        public static final int editevent_layout=0x7f030003;
+        public static final int main=0x7f030004;
+        public static final int mainscreen=0x7f030005;
+        public static final int row=0x7f030006;
+        public static final int splash_layout=0x7f030007;
+        public static final int viewevent=0x7f030008;
     }
     public static final class menu {
-        public static final int addevent_menu=0x7f070000;
-        public static final int mainscreen_menu=0x7f070001;
-        public static final int viewevent_menu=0x7f070002;
+        public static final int addevent_menu=0x7f080000;
+        public static final int mainscreen_menu=0x7f080001;
+        public static final int viewevent_menu=0x7f080002;
     }
     public static final class string {
         public static final int about=0x7f050002;
@@ -96,10 +103,10 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f060000;
+        public static final int AppBaseTheme=0x7f070000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f060001;
+        public static final int AppTheme=0x7f070001;
     }
 }
