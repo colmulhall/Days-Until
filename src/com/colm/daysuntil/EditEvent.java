@@ -31,7 +31,7 @@ public class EditEvent extends Activity
 	public final static String ID_EXTRA = "com.colm.daysuntil._ID";
 	
 	// data entered
-	private String title, date;
+	private String title, date, color;
 	
     // Called when the activity is first created.
     @Override
@@ -81,7 +81,7 @@ public class EditEvent extends Activity
 		    }
 		    else
 		    {
-		    	db.update(id, title, date);
+		    	db.update(id, title, date, color);
 		    	Toast.makeText(getApplicationContext(), "Updated", Toast.LENGTH_LONG).show();
 		    }
     	}

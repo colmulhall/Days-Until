@@ -65,7 +65,7 @@ public class ColorPickerDialog extends Dialog
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) 
 			{
-				AddEvent.color = colorList.get(position);  // set the selected color for the AddEvent class to use
+				AddEvent.selectedColor = colorList.get(position);  // set the selected color for the AddEvent class to use
 				ColorPickerDialog.this.dismiss();
 			}
 		});

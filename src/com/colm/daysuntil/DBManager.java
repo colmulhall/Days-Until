@@ -13,17 +13,19 @@ public class DBManager
 	public static final String KEY_ID = "_id";
 	public static final String KEY_TITLE = "event_title";
 	public static final String KEY_DATE = "date";
+	public static final String KEY_COLOR = "color";
 	
 	public static final String DATABASE_NAME = "Days Until Database";
 	public static final String DATABASE_TABLE = "Events";
-	public static final int DATABASE_VERSION = 5;
+	public static final int DATABASE_VERSION = 1;
 	
 	// create database table
 	private static final String SCRIPT_CREATE_DATABASE =
 			"create table " + DATABASE_TABLE + " ("
 			+ KEY_ID + " integer primary key autoincrement, "
-			+ KEY_TITLE + " text not null,"
-			+ KEY_DATE + " integer);";
+			+ KEY_TITLE + " text not null, "
+			+ KEY_DATE + " integer, "
+			+ KEY_COLOR + " integer);";
 	
 	private Context context;
 	private DBHelper DBHelper;
@@ -48,14 +50,14 @@ public class DBManager
 			 db.execSQL(SCRIPT_CREATE_DATABASE);
 		}
 		
-		//this will be called if I make a change to the database and give it a new version number
+		// this will be called if I make a change to the database and give it a new version number
 		@Override
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) 
 		{
 			onCreate(db);
 		}
 	}
-	//end of helper class ***********************************************************************************
+	// end of helper class **********************************************************************************
 	
 	public DBManager openToRead() throws SQLException 
 	{
@@ -78,21 +80,23 @@ public class DBManager
 	}
 	
 	// insert a new item into the database
-	public long insert(String title, String date)
+	public long insert(String title, String date, String color)
 	{
 		ContentValues contentValues = new ContentValues();
 		contentValues.put(KEY_TITLE, title);
 		contentValues.put(KEY_DATE, date);
+		contentValues.put(KEY_COLOR, color);
 		
 		return db.insert(DATABASE_TABLE, null, contentValues);
 	}
 	
 	// edit an item in the database
-	public boolean update(int id, String title, String date)
+	public boolean update(int id, String title, String date, String color)
 	{
 		ContentValues contentValues = new ContentValues();
 		contentValues.put(KEY_TITLE, title);
 		contentValues.put(KEY_DATE, date);
+		contentValues.put(KEY_COLOR, color);
 		
 		return db.update(DATABASE_TABLE, contentValues, KEY_ID + " = " + id, null) > 0;
 	}
@@ -115,7 +119,8 @@ public class DBManager
 		String[] columns = new String[]{
 				KEY_ID, 
 				KEY_TITLE,
-				KEY_DATE};
+				KEY_DATE,
+				KEY_COLOR};
 		Cursor cursor = db.query(DATABASE_TABLE, columns,
 		  null, null, null, null, null);
 	
@@ -128,9 +133,10 @@ public class DBManager
 		String[] columns = new String[]{
 				KEY_ID, 
 				KEY_TITLE,
-				KEY_DATE};
+				KEY_DATE,
+				KEY_COLOR};
 		
-		Cursor cursor = db.query(DATABASE_TABLE, columns, null, null, null, null, KEY_DATE + " ASC");
+		Cursor cursor = db.query(DATABASE_TABLE, columns, null, null, null, null, KEY_DATE + " ASC ");
 		
 		return cursor;
 	}
@@ -157,6 +163,15 @@ public class DBManager
 	public String getDaysUntil(int num)
     {
 		Cursor cursor = db.query(DATABASE_TABLE, new String[] {"days_until"}, 
+				"_id like " + num, null, null, null, null);
+		
+		cursor.moveToFirst();
+		return cursor.getString(0);
+    }
+	
+	public String getColor(int num)
+    {
+		Cursor cursor = db.query(DATABASE_TABLE, new String[] {"color"}, 
 				"_id like " + num, null, null, null, null);
 		
 		cursor.moveToFirst();

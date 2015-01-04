@@ -30,10 +30,10 @@ public class AddEvent extends Activity
 	private ColorPickerDialog colorPickerDialog;
 	
 	// selected color from the dialog
-	static int color = 0;
+	static int selectedColor = 0;
 	
 	// data entered
-	private String title, date;
+	private String title, date, color;
 	
     // Called when the activity is first created.
     @Override
@@ -94,7 +94,7 @@ public class AddEvent extends Activity
 		    }
 		    else
 		    {
-		    	db.insert(title, date);
+		    	db.insert(title, date, color);
 		    	Toast.makeText(getApplicationContext(), "Added", Toast.LENGTH_LONG).show();
 		    	
 		    	// reset event field after insert
@@ -168,16 +168,6 @@ public class AddEvent extends Activity
 		}
     	return false;
     }
-    
-//    // action bar
-//    @Override
-//	 public boolean onCreateOptionsMenu(Menu menu) 
-//	 {
-//    	//Inflate the menu. This adds items to the action bar if it is present.
-//    	MenuInflater inflater = getMenuInflater();
-//        inflater.inflate(R.menu.menu, menu);
-//        return true;
-//	 }
     
     // for up navigation
     public boolean onOptionsItemSelected(MenuItem item) 
