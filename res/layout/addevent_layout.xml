@@ -33,6 +33,15 @@
 		android:layout_marginBottom="5dp"
 		android:calendarViewShown="false" />
     
+    <!-- Color picker button-->
+    <Button
+        android:id="@+id/pickcolor"
+		android:layout_width="150dp"
+		android:layout_height="50dp"
+		android:text="Pick Backgroud" 
+		android:layout_gravity="center"/>
+    
+    <!-- Add event -->
     <Button
         android:id="@+id/addevent"
 		android:layout_width="150dp"

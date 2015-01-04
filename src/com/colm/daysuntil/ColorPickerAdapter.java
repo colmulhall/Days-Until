@@ -16,7 +16,7 @@ public class ColorPickerAdapter extends BaseAdapter
 	private Context context;
 	
 	// list which holds the colors to be displayed
-	private List<Integer> colorList = new ArrayList<Integer>();
+	public List<Integer> colorList = new ArrayList<Integer>();
 	
 	// width of grid column
 	int colorGridColumnWidth;
@@ -51,7 +51,8 @@ public class ColorPickerAdapter extends BaseAdapter
 		}
 	}
 
-	public View getView(int position, View convertView, ViewGroup parent) {
+	public View getView(int position, View convertView, ViewGroup parent) 
+	{
 		ImageView imageView;
 
 		// can we reuse a view?

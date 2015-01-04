@@ -4,9 +4,12 @@ import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
 import com.example.daysuntil.R;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
@@ -23,7 +26,11 @@ public class AddEvent extends Activity
 	private TextView eventTitle, eventDate;
 	private EditText enterTitle;
 	private DatePicker enterDate;
-	private Button addEvent;
+	private Button addEvent, pickColor;
+	private ColorPickerDialog colorPickerDialog;
+	
+	// selected color from the dialog
+	static int color = 0;
 	
 	// data entered
 	private String title, date;
@@ -41,13 +48,31 @@ public class AddEvent extends Activity
         eventDate = (TextView)findViewById(R.id.eventdate);
         enterTitle = (EditText)findViewById(R.id.entertitle);
         enterDate = (DatePicker)findViewById(R.id.enterdate);
+        pickColor = (Button)findViewById(R.id.pickcolor);
+        pickColor.setOnClickListener(buttonPickColorOnClickListener);
         addEvent = (Button)findViewById(R.id.addevent);
         addEvent.setOnClickListener(buttonAddOnClickListener);
         
         // Open database to write
         db = new DBManager(this);
         db.openToWrite();
+        
+        // get an instance of the dialog class
+        colorPickerDialog = new ColorPickerDialog(AddEvent.this);
     }
+    
+    // pick a background color
+    Button.OnClickListener buttonPickColorOnClickListener = new Button.OnClickListener()
+    {  
+    	@Override
+	    public void onClick(View arg0) 
+    	{
+    		// display the color picker dialog
+    		Dialog dialog;
+    		dialog = new ColorPickerDialog(AddEvent.this);
+			dialog.show();
+    	}
+    };
     
     // add the new event
     Button.OnClickListener buttonAddOnClickListener = new Button.OnClickListener()
@@ -123,6 +148,7 @@ public class AddEvent extends Activity
     	// get todays date
     	Date now = new Date();
     	
+    	// get the selected date
     	String year = date.substring(0, 4);
     	String month = date.substring(4, 6);
     	String day = date.substring(6, 8);
