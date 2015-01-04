@@ -27,7 +27,7 @@ public class DBManager
 			+ KEY_TITLE + " text not null, "
 			+ KEY_DATE + " integer, "
 			+ KEY_READABLE_DATE + " integer, "
-			+ KEY_COLOR + " integer);";
+			+ KEY_COLOR + " text);";
 	
 	private Context context;
 	private DBHelper DBHelper;

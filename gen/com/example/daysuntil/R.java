@@ -259,8 +259,7 @@ public final class R {
  API 14 theme customizations can go here. 
          */
         public static final int AppBaseTheme=0x7f080002;
-        /**  Custome action bar 
- orange 
+        /**  Custom action bar 
          */
         public static final int MyActionBarTheme=0x7f080001;
         /**  Custom theme 

@@ -34,7 +34,11 @@ public class ViewEvent extends Activity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.viewevent);
-		getWindow().getDecorView().setBackgroundColor(Color.MAGENTA);
+        
+//        int colorFromDb = Integer.parseInt(db.getColor(id));
+//        String hexColor = String.format("#%06X", (0xFFFFFF & colorFromDb));
+//        
+//		getWindow().getDecorView().setBackgroundColor(Integer.parseInt(hexColor));
 		
 		// intent passed data
 		passedValue = getIntent().getStringExtra(MainScreen.ID_EXTRA);
@@ -53,6 +57,12 @@ public class ViewEvent extends Activity
     	// Open database to read
         db = new DBManager(this);
         db.openToRead();
+        
+        // set the background color 
+        String colorFromDb = db.getColor(id);
+        int color = Integer.parseInt(colorFromDb);
+        String hexColor = String.format("#%06X", (0xFFFFFF & color));
+        getWindow().getDecorView().setBackgroundColor(Color.parseColor(hexColor));
         
         // get the information from the database
         event_title.setText(db.getEventTitle(id));

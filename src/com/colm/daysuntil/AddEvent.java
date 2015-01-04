@@ -96,6 +96,8 @@ public class AddEvent extends Activity
 		    {
 		    	readable_date = dateToNiceString();  // set the readable date for the insertion
 		    	
+		    	color = ""+selectedColor;   // get selected color from the dialog
+		    	
 		    	db.insert(title, date, readable_date, color);
 		    	Toast.makeText(getApplicationContext(), "Added", Toast.LENGTH_LONG).show();
 		    	
