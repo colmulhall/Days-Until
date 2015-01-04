@@ -19,11 +19,7 @@
 	<!-- EditEvent strings -->
 	<string name="updateevent">Update Event</string>
 	
-	
-	
-	
-	<string-array name="planets_array">
-        <item>Color Picker</item>
-    </string-array>
+	<!-- Row strings -->
+	<string name="rowarrowimagedescription">This is an arrow for each row item</string>
 	
 </resources>

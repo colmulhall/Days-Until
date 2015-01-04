@@ -12,6 +12,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.Menu;
@@ -33,6 +34,7 @@ public class ViewEvent extends Activity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.viewevent);
+		getWindow().getDecorView().setBackgroundColor(Color.MAGENTA);
 		
 		// intent passed data
 		passedValue = getIntent().getStringExtra(MainScreen.ID_EXTRA);
@@ -42,7 +44,7 @@ public class ViewEvent extends Activity
 		days_until_event = (TextView)findViewById(R.id.daysuntilevent);
 		event_date = (TextView)findViewById(R.id.eventdate);
 		
-		// get the data from the db
+		// get the data from the DB
 		setupData();
 	}
 	

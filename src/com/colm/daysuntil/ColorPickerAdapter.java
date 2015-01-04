@@ -3,6 +3,8 @@ package com.colm.daysuntil;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.daysuntil.R;
+
 import android.content.Context;
 import android.graphics.Color;
 import android.view.View;
@@ -26,7 +28,7 @@ public class ColorPickerAdapter extends BaseAdapter
 		this.context = context;
 
 		// defines the width of each color square
-		colorGridColumnWidth = 180;
+		colorGridColumnWidth = context.getResources().getInteger(R.integer.colorGridColumnWidth);
 
 		// for convenience and better reading, we place the colors in a two dimension array
 		String colors[][] = { { "822111", "AC2B16", "CC3A21", "E66550", "EFA093", "F6C5BE" }, 

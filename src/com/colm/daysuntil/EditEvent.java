@@ -31,7 +31,7 @@ public class EditEvent extends Activity
 	public final static String ID_EXTRA = "com.colm.daysuntil._ID";
 	
 	// data entered
-	private String title, date, color;
+	private String title, date, readable_date, color;
 	
     // Called when the activity is first created.
     @Override
@@ -81,7 +81,9 @@ public class EditEvent extends Activity
 		    }
 		    else
 		    {
-		    	db.update(id, title, date, color);
+		    	readable_date = dateToNiceString();  // set the readable date for the update
+		    	
+		    	db.update(id, title, date, readable_date, color);
 		    	Toast.makeText(getApplicationContext(), "Updated", Toast.LENGTH_LONG).show();
 		    }
     	}
@@ -212,6 +214,58 @@ public class EditEvent extends Activity
 			e1.printStackTrace();
 		}
     	return false;
+    }
+    
+    // get a string from a date. (e.g. 01-01-2014 will return as 1 Jan 2014)
+    public String dateToNiceString()
+    {
+    	String year = date.substring(0, 4);
+    	String month = date.substring(4, 6);
+    	String day = date.substring(6, 8);
+    	
+    	switch(month)
+    	{
+    		case "01":
+    			month = "Jan";
+    			break;
+    		case "02":
+    			month = "Feb";
+    			break;
+    		case "03":
+    			month = "Mar";
+    			break;
+    		case "04":
+    			month = "Apr";
+    			break;
+    		case "05":
+    			month = "May";
+    			break;
+    		case "06":
+    			month = "Jun";
+    			break;
+    		case "07":
+    			month = "Jul";
+    			break;
+    		case "08":
+    			month = "Aug";
+    			break;
+    		case "09":
+    			month = "Sep";
+    			break;
+    		case "10":
+    			month = "Oct";
+    			break;
+    		case "11":
+    			month = "Nov";
+    			break;
+    		case "12":
+    			month = "Dec";
+    			break;
+    		default:
+    			break;
+    	}
+    	
+    	return day + " " + month + " " + year;
     }
     
     // for up navigation

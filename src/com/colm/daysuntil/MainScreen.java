@@ -44,9 +44,9 @@ public class MainScreen extends Activity implements AdapterView.OnItemClickListe
         
         String[] from = new String[]{
         		DBManager.KEY_TITLE,
-        		DBManager.KEY_DATE,
+        		DBManager.KEY_READABLE_DATE,
         		DBManager.KEY_ID};
-        int[] to = new int[]{R.id.eventtext};
+        int[] to = new int[]{R.id.eventtext, R.id.eventdaterow};
 
         @SuppressWarnings("deprecation")
 		SimpleCursorAdapter cursorAdapter =  new SimpleCursorAdapter(this, R.layout.row, cursor, from, to);

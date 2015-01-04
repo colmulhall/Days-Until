@@ -13,6 +13,7 @@ public class DBManager
 	public static final String KEY_ID = "_id";
 	public static final String KEY_TITLE = "event_title";
 	public static final String KEY_DATE = "date";
+	public static final String KEY_READABLE_DATE = "readable_date";
 	public static final String KEY_COLOR = "color";
 	
 	public static final String DATABASE_NAME = "Days Until Database";
@@ -25,6 +26,7 @@ public class DBManager
 			+ KEY_ID + " integer primary key autoincrement, "
 			+ KEY_TITLE + " text not null, "
 			+ KEY_DATE + " integer, "
+			+ KEY_READABLE_DATE + " integer, "
 			+ KEY_COLOR + " integer);";
 	
 	private Context context;
@@ -80,22 +82,24 @@ public class DBManager
 	}
 	
 	// insert a new item into the database
-	public long insert(String title, String date, String color)
+	public long insert(String title, String date, String readable_date, String color)
 	{
 		ContentValues contentValues = new ContentValues();
 		contentValues.put(KEY_TITLE, title);
 		contentValues.put(KEY_DATE, date);
+		contentValues.put(KEY_READABLE_DATE, readable_date);
 		contentValues.put(KEY_COLOR, color);
 		
 		return db.insert(DATABASE_TABLE, null, contentValues);
 	}
 	
 	// edit an item in the database
-	public boolean update(int id, String title, String date, String color)
+	public boolean update(int id, String title, String date, String readable_date, String color)
 	{
 		ContentValues contentValues = new ContentValues();
 		contentValues.put(KEY_TITLE, title);
 		contentValues.put(KEY_DATE, date);
+		contentValues.put(KEY_READABLE_DATE, readable_date);
 		contentValues.put(KEY_COLOR, color);
 		
 		return db.update(DATABASE_TABLE, contentValues, KEY_ID + " = " + id, null) > 0;
@@ -134,6 +138,7 @@ public class DBManager
 				KEY_ID, 
 				KEY_TITLE,
 				KEY_DATE,
+				KEY_READABLE_DATE,
 				KEY_COLOR};
 		
 		Cursor cursor = db.query(DATABASE_TABLE, columns, null, null, null, null, KEY_DATE + " ASC ");
@@ -154,6 +159,15 @@ public class DBManager
 	public String getDate(int num)
     {
 		Cursor cursor = db.query(DATABASE_TABLE, new String[] {"date"}, 
+				"_id like " + num, null, null, null, null);
+		
+		cursor.moveToFirst();
+		return cursor.getString(0);
+    }
+	
+	public String getReadableDate(int num)
+    {
+		Cursor cursor = db.query(DATABASE_TABLE, new String[] {"readable_date"}, 
 				"_id like " + num, null, null, null, null);
 		
 		cursor.moveToFirst();
