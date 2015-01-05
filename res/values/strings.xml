@@ -10,6 +10,7 @@
     <string name="eventtitle">Event Name</string>
     <string name="eventdate">Event Date</string>
     <string name="addevent">Add</string>
+    <string name="background">Background</string>
     
     <!-- ViewEvent strings -->
 	<string name="deleteevent">Delete</string>

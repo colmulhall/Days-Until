@@ -91,34 +91,15 @@
 	            android:value="com.colm.daysuntil.ViewEvent" />>
 		</activity>
 		
-	    
-	    
-	    
-	    
-	    <activity 
-	        android:name="com.colm.daysuntil.ColorPickerActivity"
-	        android:label="@string/app_name"
-	        android:screenOrientation="portrait" 
-	        android:parentActivityName="com.colm.daysuntil.ViewEvent" >
-		</activity>
+	    <!-- ColorPickerAdapter -->
 		<activity 
 	        android:name="com.colm.daysuntil.ColorPickerAdapter"
 	        android:label="@string/app_name"
 	        android:screenOrientation="portrait" 
 	        android:parentActivityName="com.colm.daysuntil.ViewEvent" >
 		</activity>
-		<activity 
-	        android:name="com.colm.daysuntil.RainbowPickerAdapter"
-	        android:label="@string/app_name"
-	        android:screenOrientation="portrait" 
-	        android:parentActivityName="com.colm.daysuntil.ViewEvent" >
-		</activity>
-		<activity 
-	        android:name="com.colm.daysuntil.RainbowPickerDialog"
-	        android:label="@string/app_name"
-	        android:screenOrientation="portrait" 
-	        android:parentActivityName="com.colm.daysuntil.ViewEvent" >
-		</activity>
+		
+		<!-- ColorPickerDialog -->
 		<activity 
 	        android:name="com.colm.daysuntil.ColorPickerDialog"
 	        android:label="@string/app_name"

@@ -13,6 +13,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.Menu;
@@ -34,11 +35,6 @@ public class ViewEvent extends Activity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.viewevent);
-        
-//        int colorFromDb = Integer.parseInt(db.getColor(id));
-//        String hexColor = String.format("#%06X", (0xFFFFFF & colorFromDb));
-//        
-//		getWindow().getDecorView().setBackgroundColor(Integer.parseInt(hexColor));
 		
 		// intent passed data
 		passedValue = getIntent().getStringExtra(MainScreen.ID_EXTRA);
@@ -68,6 +64,12 @@ public class ViewEvent extends Activity
         event_title.setText(db.getEventTitle(id));
         days_until_event.setText(daysUntil());
         event_date.setText(dateToNiceString());
+        
+        //set a custom font to the textviews
+        Typeface font = Typeface.createFromAsset(getAssets(), "Quicksand Bold Oblique.otf");  
+        event_title.setTypeface(font);
+        days_until_event.setTypeface(font);
+        event_date.setTypeface(font);
     }
     
 	// calculate the days between the two dates
@@ -163,6 +165,10 @@ public class ViewEvent extends Activity
     		default:
     			break;
     	}
+    	
+    	// remove the leading zero
+    	if(Integer.parseInt(day) < 10)
+    		day = day.replace("0", "");
     	
     	return day + " " + month + " " + year;
     }

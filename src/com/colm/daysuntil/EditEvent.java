@@ -9,6 +9,7 @@ import com.example.daysuntil.R;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
@@ -25,10 +26,13 @@ public class EditEvent extends Activity
 	private TextView eventTitle, eventDate;
 	private EditText editTitle;
 	private DatePicker editDate;
-	private Button updateEvent;
+	private Button updateEvent, pickColor;
 	private String passedValue;
 	public int id;
 	public final static String ID_EXTRA = "com.colm.daysuntil._ID";
+	
+	// selected color from the dialog
+	static int selectedColor = 0;
 	
 	// data entered
 	private String title, date, readable_date, color;
@@ -50,6 +54,8 @@ public class EditEvent extends Activity
         eventDate = (TextView)findViewById(R.id.eventdate);
         editTitle = (EditText)findViewById(R.id.edittitle);
         editDate = (DatePicker)findViewById(R.id.editdate);
+        pickColor = (Button)findViewById(R.id.pickcolor);
+        pickColor.setOnClickListener(buttonPickColorOnClickListener);
         updateEvent = (Button)findViewById(R.id.updateevent);
         updateEvent.setOnClickListener(buttonAddOnClickListener);
         
@@ -57,9 +63,22 @@ public class EditEvent extends Activity
         db = new DBManager(this);
         db.openToWrite();
         
-        // set the data from the db
+        // set the data from the DB
         setupData();
     }
+    
+    // pick a background color
+    Button.OnClickListener buttonPickColorOnClickListener = new Button.OnClickListener()
+    {  
+    	@Override
+	    public void onClick(View arg0) 
+    	{
+    		// display the color picker dialog
+    		Dialog dialog;
+    		dialog = new ColorPickerDialog(EditEvent.this);
+			dialog.show();
+    	}
+    };
     
     // edit the event
     Button.OnClickListener buttonAddOnClickListener = new Button.OnClickListener()
@@ -83,8 +102,13 @@ public class EditEvent extends Activity
 		    {
 		    	readable_date = dateToNiceString();  // set the readable date for the update
 		    	
+		    	color = ""+selectedColor;   // get selected color from the dialog
+		    	
 		    	db.update(id, title, date, readable_date, color);
 		    	Toast.makeText(getApplicationContext(), "Updated", Toast.LENGTH_LONG).show();
+		    	
+		    	// reset color
+		    	selectedColor = -1052689;
 		    }
     	}
     };
@@ -149,6 +173,9 @@ public class EditEvent extends Activity
     		editDate.updateDate(Integer.parseInt(year)-1, Integer.parseInt(month), Integer.parseInt(day));
     	else
     		editDate.updateDate(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day));
+    	
+    	// set the event color
+    	selectedColor = Integer.parseInt(db.getColor(id));
     }
     
     // get the entered data
@@ -264,6 +291,10 @@ public class EditEvent extends Activity
     		default:
     			break;
     	}
+    	
+    	// remove the leading zero
+    	if(Integer.parseInt(day) < 10)
+    		day = day.replace("0", "");
     	
     	return day + " " + month + " " + year;
     }

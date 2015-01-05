@@ -103,6 +103,9 @@ public class AddEvent extends Activity
 		    	
 		    	// reset event field after insert
 				enterTitle.setText(null);
+				
+				// reset color
+				selectedColor = -1052689;
 		    }
     	}
     };
@@ -221,6 +224,10 @@ public class AddEvent extends Activity
     		default:
     			break;
     	}
+    	
+    	// remove the leading zero
+    	if(Integer.parseInt(day) < 10)
+    		day = day.replace("0", "");
     	
     	return day + " " + month + " " + year;
     }

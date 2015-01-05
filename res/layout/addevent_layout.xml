@@ -9,21 +9,35 @@
         android:id="@+id/eventtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/eventtitle"/>
+        android:text="@string/eventtitle"
+        android:layout_gravity="center"
+        android:padding="10dp"
+        android:textSize="18sp" />
      
     <EditText
 	    android:id="@+id/entertitle"
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
-	    android:inputType="textCapSentences" 
+	    android:inputType="textCapWords" 
 	    android:imeOptions="actionDone"/>
+    
+    <!-- Seperator -->
+    <View
+	    android:layout_width="fill_parent"
+	    android:layout_height="2dp"
+	    android:background="@android:color/darker_gray"
+	    android:layout_marginTop="20dp"
+	    android:layout_marginBottom="20dp"/>
     
     <!-- Enter event date -->
     <TextView
         android:id="@+id/eventdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/eventdate"/>
+        android:text="@string/eventdate"
+        android:layout_gravity="center"
+        android:padding="10dp"
+        android:textSize="18sp" />
     
     <DatePicker
 		android:id="@+id/enterdate"
@@ -33,13 +47,48 @@
 		android:layout_marginBottom="5dp"
 		android:calendarViewShown="false" />
     
-    <!-- Color picker button-->
-    <Button
-        android:id="@+id/pickcolor"
-		android:layout_width="150dp"
-		android:layout_height="50dp"
-		android:text="Pick Backgroud" 
-		android:layout_gravity="center"/>
+    <!-- Seperator -->
+    <View
+	    android:layout_width="fill_parent"
+	    android:layout_height="2dp"
+	    android:background="@android:color/darker_gray"
+	    android:layout_marginTop="20dp"
+	    android:layout_marginBottom="20dp"/>
+   
+    <RelativeLayout
+	    android:layout_width="fill_parent" android:layout_height="wrap_content"
+	    android:layout_gravity="center_horizontal">
+	    
+	    <!-- Color picker button and "picture" -->
+	    <LinearLayout 
+			android:layout_height="wrap_content" android:orientation="horizontal"
+			android:layout_width="fill_parent">
+			
+			<!-- Color picker button-->
+		    <Button
+		        android:id="@+id/pickcolor"
+				android:layout_width="150dp"
+				android:layout_height="50dp"
+				android:text="@string/background" 
+				android:layout_gravity="start"/>
+		    
+		    <TextView 
+			    android:id="@+id/colorsample"
+			    android:layout_height="match_parent" 
+			    android:layout_width="90dp"
+			    android:textIsSelectable="false"
+			    android:background="#000000"/>
+	
+		</LinearLayout>
+	</RelativeLayout>
+		
+     <!-- Seperator -->
+    <View
+	    android:layout_width="fill_parent"
+	    android:layout_height="2dp"
+	    android:background="@android:color/darker_gray"
+	    android:layout_marginTop="20dp"
+	    android:layout_marginBottom="20dp"/>
     
     <!-- Add event -->
     <Button

@@ -9,6 +9,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -18,14 +19,16 @@ public class ColorPickerDialog extends Dialog
 {
 	public List<Integer> colorList = new ArrayList<Integer>();
 	AddEvent addevent;
+	EditEvent editEvent;
 	
 	public ColorPickerDialog(Context context) 
 	{
 		super(context);
 		this.setTitle("Pick Background");
 		
-		// create an instance of the add event class
+		// create an instance of the add/edit event classes
 		addevent = new AddEvent();
+		editEvent = new EditEvent();
 		
 		// for convenience and better reading, we place the colors in a two dimension array
 		String colors[][] = { { "822111", "AC2B16", "CC3A21", "E66550", "EFA093", "F6C5BE" }, 
@@ -48,6 +51,9 @@ public class ColorPickerDialog extends Dialog
 				colorList.add(Color.parseColor("#" + colors[i][j]));
 			}
 		}
+		
+		for(int i=0; i<colorList.size(); i++)
+			Log.i("HERE", ""+colorList.get(i));
 	}
 	
 	@Override
@@ -65,7 +71,9 @@ public class ColorPickerDialog extends Dialog
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) 
 			{
-				AddEvent.selectedColor = colorList.get(position);  // set the selected color for the AddEvent class to use
+				// set the selected color for the AddEvent/EditEvent classes to use
+				AddEvent.selectedColor = colorList.get(position);  
+				EditEvent.selectedColor = colorList.get(position);
 				ColorPickerDialog.this.dismiss();
 			}
 		});
