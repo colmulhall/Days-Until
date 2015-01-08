@@ -18,7 +18,7 @@ import android.widget.GridView;
 public class ColorPickerDialog extends Dialog 
 {
 	public List<Integer> colorList = new ArrayList<Integer>();
-	AddEvent addevent;
+	AddEvent addEvent;
 	EditEvent editEvent;
 	
 	public ColorPickerDialog(Context context) 
@@ -27,7 +27,7 @@ public class ColorPickerDialog extends Dialog
 		this.setTitle("Pick Background");
 		
 		// create an instance of the add/edit event classes
-		addevent = new AddEvent();
+		addEvent = new AddEvent();
 		editEvent = new EditEvent();
 		
 		// for convenience and better reading, we place the colors in a two dimension array
@@ -72,8 +72,10 @@ public class ColorPickerDialog extends Dialog
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) 
 			{
 				// set the selected color for the AddEvent/EditEvent classes to use
-				AddEvent.selectedColor = colorList.get(position);  
+				AddEvent.selectedColor = colorList.get(position); 
+				addEvent.changeSampleColor();
 				EditEvent.selectedColor = colorList.get(position);
+				editEvent.changeSampleColor();
 				ColorPickerDialog.this.dismiss();
 			}
 		});

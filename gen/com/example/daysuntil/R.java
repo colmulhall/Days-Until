@@ -167,6 +167,7 @@ public final class R {
         public static final int maroon=0x7f050008;
         public static final int navy=0x7f05000e;
         public static final int olive=0x7f050006;
+        public static final int pressed=0x7f05009c;
         public static final int purple=0x7f050007;
         public static final int red=0x7f050003;
         public static final int silver=0x7f050004;

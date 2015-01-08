@@ -10,10 +10,12 @@ import com.example.daysuntil.R;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -24,6 +26,7 @@ public class AddEvent extends Activity
 {
 	private DBManager db;
 	private TextView eventTitle, eventDate;
+	private static TextView colorSample;
 	private EditText enterTitle;
 	private DatePicker enterDate;
 	private Button addEvent, pickColor;
@@ -44,12 +47,16 @@ public class AddEvent extends Activity
         
         getActionBar().setDisplayHomeAsUpEnabled(true); // for up navigation
         
+        // stop keyboard automatically opening
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN); 
+        
         eventTitle = (TextView)findViewById(R.id.eventtitle);
         eventDate = (TextView)findViewById(R.id.eventdate);
         enterTitle = (EditText)findViewById(R.id.entertitle);
         enterDate = (DatePicker)findViewById(R.id.enterdate);
         pickColor = (Button)findViewById(R.id.pickcolor);
         pickColor.setOnClickListener(buttonPickColorOnClickListener);
+        colorSample = (TextView)findViewById(R.id.colorsample);
         addEvent = (Button)findViewById(R.id.addevent);
         addEvent.setOnClickListener(buttonAddOnClickListener);
         
@@ -71,6 +78,7 @@ public class AddEvent extends Activity
     		Dialog dialog;
     		dialog = new ColorPickerDialog(AddEvent.this);
 			dialog.show();
+			changeSampleColor();
     	}
     };
     
@@ -230,6 +238,13 @@ public class AddEvent extends Activity
     		day = day.replace("0", "");
     	
     	return day + " " + month + " " + year;
+    }
+    
+    // change the color of the sample selected color textview
+    public static void changeSampleColor()
+    {
+    	String hexColor = String.format("#%06X", (0xFFFFFF & selectedColor));
+        colorSample.setBackgroundColor(Color.parseColor(hexColor));
     }
     
     // for up navigation

@@ -159,4 +159,6 @@
 		 <color name="Navy">#000080</color>
 		 <color name="Black">#000000</color>
 		 
+		 <color name="pressed">#CC97e08f</color>
+		 
 </resources>

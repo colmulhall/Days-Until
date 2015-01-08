@@ -5,6 +5,7 @@ import com.example.daysuntil.R;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.view.Menu;
@@ -29,6 +30,9 @@ public class MainScreen extends Activity implements AdapterView.OnItemClickListe
         setContentView(R.layout.mainscreen);
         
         listContent = (ListView)findViewById(R.id.list);
+        
+        // set background color to white
+        getWindow().getDecorView().setBackgroundColor(getResources().getColor(R.color.White));
         
         // setup the data from the database
         setupData();

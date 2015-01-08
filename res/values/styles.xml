@@ -6,10 +6,9 @@
     </style>
 
     <!-- Custom action bar -->
-    <style name="MyActionBarTheme" parent="@android:style/Widget.Holo.Light.ActionBar">
+    <style name="MyActionBarTheme" parent="@android:style/Widget.Holo.ActionBar">
         <!-- set action bar color -->
-        <item name="android:background">@color/Orange</item>
+        <item name="android:background">@color/pressed</item>
     </style>
-
-
+    
 </resources>

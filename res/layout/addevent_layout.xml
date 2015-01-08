@@ -1,101 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     
-    <!-- Enter event name -->
-    <TextView
-        android:id="@+id/eventtitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/eventtitle"
-        android:layout_gravity="center"
-        android:padding="10dp"
-        android:textSize="18sp" />
-     
-    <EditText
-	    android:id="@+id/entertitle"
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:inputType="textCapWords" 
-	    android:imeOptions="actionDone"/>
-    
-    <!-- Seperator -->
-    <View
-	    android:layout_width="fill_parent"
-	    android:layout_height="2dp"
-	    android:background="@android:color/darker_gray"
-	    android:layout_marginTop="20dp"
-	    android:layout_marginBottom="20dp"/>
-    
-    <!-- Enter event date -->
-    <TextView
-        android:id="@+id/eventdate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/eventdate"
-        android:layout_gravity="center"
-        android:padding="10dp"
-        android:textSize="18sp" />
-    
-    <DatePicker
-		android:id="@+id/enterdate"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_gravity="center"
-		android:layout_marginBottom="5dp"
-		android:calendarViewShown="false" />
-    
-    <!-- Seperator -->
-    <View
-	    android:layout_width="fill_parent"
-	    android:layout_height="2dp"
-	    android:background="@android:color/darker_gray"
-	    android:layout_marginTop="20dp"
-	    android:layout_marginBottom="20dp"/>
-   
-    <RelativeLayout
-	    android:layout_width="fill_parent" android:layout_height="wrap_content"
-	    android:layout_gravity="center_horizontal">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:context=".MainActivity$DummySectionFragment" >
+
+	<LinearLayout 
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:orientation="vertical" >
 	    
-	    <!-- Color picker button and "picture" -->
-	    <LinearLayout 
-			android:layout_height="wrap_content" android:orientation="horizontal"
-			android:layout_width="fill_parent">
-			
-			<!-- Color picker button-->
-		    <Button
-		        android:id="@+id/pickcolor"
-				android:layout_width="150dp"
-				android:layout_height="50dp"
-				android:text="@string/background" 
-				android:layout_gravity="start"/>
+	    <!-- Enter event name -->
+	    <TextView
+	        android:id="@+id/eventtitle"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/eventtitle"
+	        android:layout_gravity="center"
+	        android:padding="10dp"
+	        android:textSize="18sp" />
+	     
+	    <EditText
+		    android:id="@+id/entertitle"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:inputType="textCapWords" 
+		    android:imeOptions="actionDone"/>
+	    
+	    <!-- Seperator -->
+	    <View
+		    android:layout_width="fill_parent"
+		    android:layout_height="2dp"
+		    android:background="@android:color/darker_gray"
+		    android:layout_marginTop="20dp"
+		    android:layout_marginBottom="20dp"/>
+	    
+	    <!-- Enter event date -->
+	    <TextView
+	        android:id="@+id/eventdate"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/eventdate"
+	        android:layout_gravity="center"
+	        android:padding="10dp"
+	        android:textSize="18sp" />
+	    
+	    <DatePicker
+			android:id="@+id/enterdate"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:layout_marginBottom="5dp"
+			android:calendarViewShown="false" />
+	    
+	    <!-- Seperator -->
+	    <View
+		    android:layout_width="fill_parent"
+		    android:layout_height="2dp"
+		    android:background="@android:color/darker_gray"
+		    android:layout_marginTop="20dp"
+		    android:layout_marginBottom="20dp"/>
+	   
+	    <RelativeLayout
+		    android:layout_width="fill_parent" android:layout_height="wrap_content"
+		    android:layout_gravity="center_horizontal">
 		    
-		    <TextView 
-			    android:id="@+id/colorsample"
-			    android:layout_height="match_parent" 
-			    android:layout_width="90dp"
-			    android:textIsSelectable="false"
-			    android:background="#000000"/>
-	
-		</LinearLayout>
-	</RelativeLayout>
+		    <!-- Color picker button and "picture" -->
+		    <LinearLayout 
+				android:layout_height="wrap_content" android:orientation="horizontal"
+				android:layout_width="fill_parent">
+				
+				<!-- Color picker button-->
+			    <Button
+			        android:id="@+id/pickcolor"
+					android:layout_width="150dp"
+					android:layout_height="50dp"
+					android:text="@string/background" 
+					android:layout_gravity="start"/>
+			    
+			    <!-- Color sample textview -->
+			    <TextView 
+				    android:id="@+id/colorsample"
+				    android:layout_height="match_parent" 
+				    android:layout_width="90dp"
+				    android:textIsSelectable="false"
+				    android:background="@color/White"/>
 		
-     <!-- Seperator -->
-    <View
-	    android:layout_width="fill_parent"
-	    android:layout_height="2dp"
-	    android:background="@android:color/darker_gray"
-	    android:layout_marginTop="20dp"
-	    android:layout_marginBottom="20dp"/>
-    
-    <!-- Add event -->
-    <Button
-        android:id="@+id/addevent"
-		android:layout_width="150dp"
-		android:layout_height="50dp"
-		android:text="@string/addevent" 
-		android:layout_gravity="center"/>
-   
-</LinearLayout>
+			</LinearLayout>
+		</RelativeLayout>
+			
+	     <!-- Seperator -->
+	    <View
+		    android:layout_width="fill_parent"
+		    android:layout_height="2dp"
+		    android:background="@android:color/darker_gray"
+		    android:layout_marginTop="20dp"
+		    android:layout_marginBottom="20dp"/>
+	    
+	    <!-- Add event -->
+	    <Button
+	        android:id="@+id/addevent"
+			android:layout_width="150dp"
+			android:layout_height="50dp"
+			android:text="@string/addevent"
+			android:layout_marginBottom="20dp" 
+			android:layout_gravity="center"/>
+	   
+	</LinearLayout>
+</ScrollView>

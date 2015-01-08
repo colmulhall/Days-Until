@@ -1,52 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     
-    <!-- Edit event name -->
-    <TextView
-        android:id="@+id/eventtitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/eventtitle"/>
-     
-    <EditText
-	    android:id="@+id/edittitle"
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:inputType="textCapSentences" 
-	    android:imeOptions="actionDone"/>
-    
-    <!-- Edit event date -->
-    <TextView
-        android:id="@+id/eventdate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/eventdate"/>
-    
-    <DatePicker
-		android:id="@+id/editdate"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_gravity="center"
-		android:layout_marginBottom="5dp"
-		android:calendarViewShown="false" />
-    
-    <!-- Color picker button-->
-    <Button
-        android:id="@+id/pickcolor"
-		android:layout_width="150dp"
-		android:layout_height="50dp"
-		android:text="Pick Background" 
-		android:layout_gravity="center"/>
-    
-    <!-- Update event button -->
-    <Button
-        android:id="@+id/updateevent"
-		android:layout_width="150dp"
-		android:layout_height="50dp"
-		android:text="@string/updateevent" 
-		android:layout_gravity="center"/>
-   
-</LinearLayout>
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:context=".MainActivity$DummySectionFragment" >
+
+	<LinearLayout 
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:orientation="vertical" >
+	    
+	     <!-- Edit event name -->
+	    <TextView
+	        android:id="@+id/eventtitle"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/eventtitle"
+	        android:layout_gravity="center"
+	        android:padding="10dp"
+	        android:textSize="18sp" />
+	     
+	    <EditText
+		    android:id="@+id/edittitle"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:inputType="textCapWords" 
+		    android:imeOptions="actionDone"/>
+	    
+	    <!-- Seperator -->
+	    <View
+		    android:layout_width="fill_parent"
+		    android:layout_height="2dp"
+		    android:background="@android:color/darker_gray"
+		    android:layout_marginTop="20dp"
+		    android:layout_marginBottom="20dp"/>
+	    
+	    <!-- Edit event date -->
+	    <TextView
+	        android:id="@+id/eventdate"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/eventdate"
+	        android:layout_gravity="center"
+	        android:padding="10dp"
+	        android:textSize="18sp" />
+	    
+	    <DatePicker
+			android:id="@+id/editdate"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:layout_marginBottom="5dp"
+			android:calendarViewShown="false" />
+	    
+	    <!-- Seperator -->
+	    <View
+		    android:layout_width="fill_parent"
+		    android:layout_height="2dp"
+		    android:background="@android:color/darker_gray"
+		    android:layout_marginTop="20dp"
+		    android:layout_marginBottom="20dp"/>
+	   
+	    <RelativeLayout
+		    android:layout_width="fill_parent" android:layout_height="wrap_content"
+		    android:layout_gravity="center_horizontal">
+		    
+		    <!-- Color picker button and sample color -->
+		    <LinearLayout 
+				android:layout_height="wrap_content" android:orientation="horizontal"
+				android:layout_width="fill_parent">
+				
+				<!-- Color picker button-->
+			    <Button
+			        android:id="@+id/pickcolor"
+					android:layout_width="150dp"
+					android:layout_height="50dp"
+					android:text="@string/background" 
+					android:layout_gravity="start"/>
+			    
+			    <!-- Color sample textview -->
+			    <TextView 
+				    android:id="@+id/colorsample"
+				    android:layout_height="match_parent" 
+				    android:layout_width="90dp"
+				    android:textIsSelectable="false"
+				    android:background="@color/White"/>
+		
+			</LinearLayout>
+		</RelativeLayout>
+			
+	     <!-- Seperator -->
+	    <View
+		    android:layout_width="fill_parent"
+		    android:layout_height="2dp"
+		    android:background="@android:color/darker_gray"
+		    android:layout_marginTop="20dp"
+		    android:layout_marginBottom="20dp"/>
+	    
+	    <!-- Update event -->
+	    <Button
+	        android:id="@+id/updateevent"
+			android:layout_width="150dp"
+			android:layout_height="50dp"
+			android:text="@string/addevent"
+			android:layout_marginBottom="20dp" 
+			android:layout_gravity="center"/>
+	   
+	</LinearLayout>
+</ScrollView>

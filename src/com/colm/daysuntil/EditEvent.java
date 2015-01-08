@@ -10,10 +10,12 @@ import com.example.daysuntil.R;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -24,6 +26,7 @@ public class EditEvent extends Activity
 {
 	private DBManager db;
 	private TextView eventTitle, eventDate;
+	private static TextView colorSample;
 	private EditText editTitle;
 	private DatePicker editDate;
 	private Button updateEvent, pickColor;
@@ -49,6 +52,12 @@ public class EditEvent extends Activity
      	id = Integer.parseInt(passedValue);
      	
         getActionBar().setDisplayHomeAsUpEnabled(true); // for up navigation
+        
+        // stop keyboard automatically opening
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN); 
+        
+        // set background color to white
+        getWindow().getDecorView().setBackgroundColor(getResources().getColor(R.color.White));
         
         eventTitle = (TextView)findViewById(R.id.eventtitle);
         eventDate = (TextView)findViewById(R.id.eventdate);
@@ -297,6 +306,13 @@ public class EditEvent extends Activity
     		day = day.replace("0", "");
     	
     	return day + " " + month + " " + year;
+    }
+    
+    // change the color of the sample selected color textview
+    public static void changeSampleColor()
+    {
+    	String hexColor = String.format("#%06X", (0xFFFFFF & selectedColor));
+        colorSample.setBackgroundColor(Color.parseColor(hexColor));
     }
     
     // for up navigation
