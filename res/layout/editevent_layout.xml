@@ -62,33 +62,21 @@
 		    android:layout_marginTop="20dp"
 		    android:layout_marginBottom="20dp"/>
 	   
-	    <RelativeLayout
-		    android:layout_width="fill_parent" android:layout_height="wrap_content"
-		    android:layout_gravity="center_horizontal">
-		    
-		    <!-- Color picker button and sample color -->
-		    <LinearLayout 
-				android:layout_height="wrap_content" android:orientation="horizontal"
-				android:layout_width="fill_parent">
-				
-				<!-- Color picker button-->
-			    <Button
-			        android:id="@+id/pickcolor"
-					android:layout_width="150dp"
-					android:layout_height="50dp"
-					android:text="@string/background" 
-					android:layout_gravity="start"/>
-			    
-			    <!-- Color sample textview -->
-			    <TextView 
-				    android:id="@+id/colorsample"
-				    android:layout_height="match_parent" 
-				    android:layout_width="90dp"
-				    android:textIsSelectable="false"
-				    android:background="@color/White"/>
-		
-			</LinearLayout>
-		</RelativeLayout>
+	    <!-- Color picker and sampler -->
+	    <Button
+			android:id="@+id/pickcolor"
+			android:layout_width="150dp"
+			android:layout_height="50dp"
+			android:layout_gravity="center"
+			android:text="@string/background" />
+			
+		<TextView 
+			android:id="@+id/colorsample"
+			android:layout_height="match_parent" 
+			android:layout_width="90dp"
+			android:textIsSelectable="false"
+			android:layout_gravity="center"
+			android:background="@drawable/custom_textview"/>
 			
 	     <!-- Seperator -->
 	    <View

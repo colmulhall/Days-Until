@@ -7,8 +7,8 @@
     <string name="about">About</string>
     
     <!-- AddEvent strings -->
-    <string name="eventtitle">Event Name</string>
-    <string name="eventdate">Event Date</string>
+    <string name="eventtitle">Title</string>
+    <string name="eventdate">Date</string>
     <string name="addevent">Add</string>
     <string name="background">Background</string>
     

@@ -11,6 +11,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
@@ -63,9 +64,6 @@ public class AddEvent extends Activity
         // Open database to write
         db = new DBManager(this);
         db.openToWrite();
-        
-        // get an instance of the dialog class
-        colorPickerDialog = new ColorPickerDialog(AddEvent.this);
     }
     
     // pick a background color
@@ -76,7 +74,7 @@ public class AddEvent extends Activity
     	{
     		// display the color picker dialog
     		Dialog dialog;
-    		dialog = new ColorPickerDialog(AddEvent.this);
+    		dialog = new ColorPickerDialog(AddEvent.this, "AddEvent");
 			dialog.show();
 			changeSampleColor();
     	}
@@ -244,7 +242,8 @@ public class AddEvent extends Activity
     public static void changeSampleColor()
     {
     	String hexColor = String.format("#%06X", (0xFFFFFF & selectedColor));
-        colorSample.setBackgroundColor(Color.parseColor(hexColor));
+	    GradientDrawable bgShape = (GradientDrawable)colorSample.getBackground();
+	    bgShape.setColor(Color.parseColor(hexColor));
     }
     
     // for up navigation

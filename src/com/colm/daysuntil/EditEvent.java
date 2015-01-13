@@ -11,6 +11,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
@@ -24,7 +25,7 @@ import android.widget.Toast;
 
 public class EditEvent extends Activity
 {
-	private DBManager db;
+	private static DBManager db;
 	private TextView eventTitle, eventDate;
 	private static TextView colorSample;
 	private EditText editTitle;
@@ -72,6 +73,9 @@ public class EditEvent extends Activity
         db = new DBManager(this);
         db.openToWrite();
         
+        // set the sample color as the activity opens
+//        changeSampleColor(id);
+        
         // set the data from the DB
         setupData();
     }
@@ -84,7 +88,7 @@ public class EditEvent extends Activity
     	{
     		// display the color picker dialog
     		Dialog dialog;
-    		dialog = new ColorPickerDialog(EditEvent.this);
+    		dialog = new ColorPickerDialog(EditEvent.this, "EditEvent");
 			dialog.show();
     	}
     };
@@ -312,7 +316,18 @@ public class EditEvent extends Activity
     public static void changeSampleColor()
     {
     	String hexColor = String.format("#%06X", (0xFFFFFF & selectedColor));
-        colorSample.setBackgroundColor(Color.parseColor(hexColor));
+	    GradientDrawable bgShape = (GradientDrawable)colorSample.getBackground();
+	    bgShape.setColor(Color.parseColor(hexColor));
+    }
+    
+    // set the sample color to be the current color
+    public void changeSampleColor(int id)
+    {
+        String colorFromDb = db.getColor(id);
+        int color = Integer.parseInt(colorFromDb);
+        String hexColor = String.format("#%06X", (0xFFFFFF & color));
+        GradientDrawable bgShape = (GradientDrawable)colorSample.getBackground();
+	    bgShape.setColor(Color.parseColor(hexColor));
     }
     
     // for up navigation

@@ -20,11 +20,15 @@ public class ColorPickerDialog extends Dialog
 	public List<Integer> colorList = new ArrayList<Integer>();
 	AddEvent addEvent;
 	EditEvent editEvent;
+	String activity;
 	
-	public ColorPickerDialog(Context context) 
+	public ColorPickerDialog(Context context, String activity) 
 	{
 		super(context);
 		this.setTitle("Pick Background");
+		
+		// set calling activity
+		this.activity = activity;
 		
 		// create an instance of the add/edit event classes
 		addEvent = new AddEvent();
@@ -51,9 +55,6 @@ public class ColorPickerDialog extends Dialog
 				colorList.add(Color.parseColor("#" + colors[i][j]));
 			}
 		}
-		
-		for(int i=0; i<colorList.size(); i++)
-			Log.i("HERE", ""+colorList.get(i));
 	}
 	
 	@Override
@@ -71,11 +72,18 @@ public class ColorPickerDialog extends Dialog
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) 
 			{
-				// set the selected color for the AddEvent/EditEvent classes to use
-				AddEvent.selectedColor = colorList.get(position); 
-				addEvent.changeSampleColor();
-				EditEvent.selectedColor = colorList.get(position);
-				editEvent.changeSampleColor();
+				// set the selected color for the AddEvent/EditEvent classes to use depending on which is callings
+				if(activity.equals("AddEvent"))
+				{
+					AddEvent.selectedColor = colorList.get(position); 
+					addEvent.changeSampleColor();
+				}
+				else
+				{
+					EditEvent.selectedColor = colorList.get(position);
+					editEvent.changeSampleColor();
+				}
+					
 				ColorPickerDialog.this.dismiss();
 			}
 		});
